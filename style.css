@@ -1,0 +1,10 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    background-color: beige;
+    width: 1280px;
+    min-height: 300px;
+}
