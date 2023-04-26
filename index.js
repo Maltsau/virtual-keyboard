@@ -66,6 +66,7 @@ const KEYBOARD_MAP = [
 ];
 
 let lang = localStorage.lang ? localStorage.lang : "en";
+let isUpperRegister = false;
 
 function formDocument() {
   let isEng = 0;
@@ -99,20 +100,26 @@ function formDocument() {
 
   const descriptionSection = document.createElement("div");
   descriptionSection.classList.add("discription-section");
-  const discriptionParagraph = document.createElement("p");
-  discriptionParagraph.classList.add("discription-paragraph");
-  discriptionParagraph.innerText = `The keyboard was created in the Linux OS
-    To switch language, press: Win + Space`;
-  descriptionSection.appendChild(discriptionParagraph);
+  const descriptionParagraph = document.createElement("p");
+  descriptionParagraph.classList.add("discription-paragraph");
+  descriptionSection.appendChild(descriptionParagraph);
   wrapper.appendChild(descriptionSection);
+  fillDescription();
 }
 
 function fillKeyboard(register) {
+  console.log("filling", register);
+  const keyboardWrapper = document.querySelector(".keyboard-wrapper");
+  keyboardWrapper.innerHTML = null;
   for (let i = 0; i < KEYBOARD_MAP.length; i++) {
     const button = document.createElement("div");
     button.classList.add("button");
     button.id = KEYBOARD_MAP[i][register];
+    button.addEventListener("click", handleButtonClick);
     button.classList.add(KEYBOARD_MAP[i][register].toLocaleLowerCase());
+    if (KEYBOARD_MAP[i][register].includes("CapsLock") && isUpperRegister) {
+      button.classList.add("clicked");
+    }
     if (KEYBOARD_MAP[i][register].includes("Ctrl")) {
       button.innerHTML = `<span>Ctrl</span>`;
     } else if (KEYBOARD_MAP[i][register].includes("Shift")) {
@@ -132,8 +139,19 @@ function fillKeyboard(register) {
     } else {
       button.innerHTML = `<span>${KEYBOARD_MAP[i][register]}</span>`;
     }
-    const keyboardWrapper = document.querySelector(".keyboard-wrapper");
+
     keyboardWrapper.appendChild(button);
+  }
+}
+
+function fillDescription() {
+  const discriptionParagraph = document.querySelector(".discription-paragraph");
+  if (lang === "en") {
+    discriptionParagraph.innerText = `The keyboard was created in the Linux OS
+    To switch language, press: Win + Space`;
+  } else {
+    discriptionParagraph.innerText = `Клавіятура створана ў АC Linux
+    Каб пераключыць мову, націсніце: Win + Space`;
   }
 }
 
@@ -144,16 +162,51 @@ function setLang() {
     localStorage.setItem("lang", lang);
     langMarker.innerText = lang.toUpperCase();
     langMarker.classList.toggle("en");
+    fillKeyboard(2);
+    fillDescription();
+    const capsLockKey = document.querySelector(".capslock");
+    console.log("capsLockKey", capsLockKey);
+    isUpperRegister = false;
+    capsLockKey.classList.remove("clicked");
   } else {
     lang = "en";
     localStorage.setItem("lang", lang);
     langMarker.innerText = lang.toUpperCase();
     langMarker.classList.toggle("en");
+    fillKeyboard(0);
+    fillDescription();
+    const capsLockKey = document.querySelector(".capslock");
+    console.log("capsLockKey", capsLockKey);
+    isUpperRegister = false;
+    capsLockKey.classList.remove("clicked");
   }
 }
 
-function changeKeyboard() {
-  const keys = document.querySelectorAll(".button");
+function handleButtonClick(event) {
+  const target = event.currentTarget;
+  if (target.classList.contains("capslock")) {
+    target.classList.toggle("clicked");
+    toggleRegister();
+    console.log("isUpperRegister", isUpperRegister);
+    if (lang === "en") {
+      console.log("english", isUpperRegister);
+      isUpperRegister ? fillKeyboard(1) : fillKeyboard(0);
+    } else {
+      console.log("belarussian", isUpperRegister);
+      isUpperRegister ? fillKeyboard(3) : fillKeyboard(2);
+    }
+  } else if (target.classList.contains("button")) {
+    target.classList.add("clicked");
+    setTimeout(() => {
+      target.classList.remove("clicked");
+    }, 200);
+  }
+}
+
+function toggleRegister() {
+  isUpperRegister = !isUpperRegister;
+  //   const capsLockKey = document.querySelector(".capslock");
+  //   capsLockKey.classList.toggle("clicked");
 }
 
 function handleKeyPress(event) {
@@ -161,5 +214,4 @@ function handleKeyPress(event) {
 }
 
 document.addEventListener("DOMContentLoaded", formDocument);
-// document.addEventListener("DOMContentLoaded", setLang);
 document.addEventListener("keypress", handleKeyPress);
