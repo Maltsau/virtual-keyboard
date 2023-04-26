@@ -1,69 +1,3 @@
-const KEYBOARD_ARR = [
-  "`",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  "-",
-  "=",
-  "Backspace",
-  "Tab",
-  "Q",
-  "W",
-  "E",
-  "R",
-  "T",
-  "Y",
-  "U",
-  "I",
-  "O",
-  "P",
-  "[",
-  "]",
-  "Solidus",
-  "CapsLock",
-  "A",
-  "S",
-  "D",
-  "F",
-  "G",
-  "H",
-  "J",
-  "K",
-  "L",
-  ";",
-  "'",
-  "Enter",
-  "Left-Shift",
-  "Z",
-  "X",
-  "C",
-  "V",
-  "B",
-  "N",
-  "M",
-  "<",
-  ">",
-  "?",
-  "Up",
-  "Right-Shift",
-  "Left-Ctrl",
-  "Win",
-  "Alt",
-  "Space",
-  "Alt",
-  "Left",
-  "Down",
-  "Right",
-  "Right-Ctrl",
-];
-
 const KEYBOARD_MAP = [
   ["`", "~", "ё", "Ё"],
   ["1", "!", "1", "!"],
@@ -93,6 +27,7 @@ const KEYBOARD_MAP = [
   ["[", "{", "х", "Х"],
   ["]", "}", "'", "'"],
   ["Solidus", "|", "Solidus", "/"],
+  ["Del", "Del", "Del", "Del"],
   ["CapsLock", "CapsLock", "CapsLock", "CapsLock"],
   ["a", "A", "ф", "Ф"],
   ["s", "S", "ы", "Ы"],
@@ -130,59 +65,101 @@ const KEYBOARD_MAP = [
   ["Right-Ctrl", "Right-Ctrl", "Right-Ctrl", "Right-Ctrl"],
 ];
 
-function formKeyboard() {
-  const keys = document.querySelectorAll(".button");
-  console.log(keys);
-}
+let lang = localStorage.lang ? localStorage.lang : "en";
 
-const wrapper = document.createElement("main");
-wrapper.classList.add("wrapper");
-document.body.insertAdjacentElement("afterbegin", wrapper);
-
-const display = document.createElement("textarea");
-display.rows = 10;
-display.cols = 50;
-display.classList.add("display");
-wrapper.appendChild(display);
-
-const keyboardWrapper = document.createElement("div");
-keyboardWrapper.classList.add("keyboard-wrapper");
-wrapper.appendChild(keyboardWrapper);
-
-for (let i = 0; i < KEYBOARD_ARR.length; i++) {
-  const button = document.createElement("div");
-  button.classList.add("button");
-  button.id = KEYBOARD_ARR[i];
-  button.classList.add(KEYBOARD_ARR[i].toLocaleLowerCase());
-  if (KEYBOARD_ARR[i].includes("Ctrl")) {
-    button.innerHTML = `<span>Ctrl</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Shift")) {
-    button.innerHTML = `<span>Shift</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Solidus")) {
-    button.innerHTML = `<span>&#47;</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Space")) {
-    button.innerText = null;
-  } else if (KEYBOARD_ARR[i].includes("Up")) {
-    button.innerHTML = `<span>&uarr;</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Left")) {
-    button.innerHTML = `<span>&larr;</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Down")) {
-    button.innerHTML = `<span>&darr;</span>`;
-  } else if (KEYBOARD_ARR[i].includes("Right")) {
-    button.innerHTML = `<span>&rarr;</span>`;
-  } else {
-    button.innerText = KEYBOARD_ARR[i];
+function formDocument() {
+  let isEng = 0;
+  if (lang === "by") {
+    isEng = 2;
   }
+  const wrapper = document.createElement("main");
+  wrapper.classList.add("wrapper");
+  document.body.insertAdjacentElement("afterbegin", wrapper);
 
-  keyboardWrapper.appendChild(button);
+  const langMarker = document.createElement("div");
+  langMarker.classList.add("lang-marker");
+  wrapper.appendChild(langMarker);
+  langMarker.innerText = lang.toUpperCase();
+  if (lang === "en") {
+    langMarker.classList.add("en");
+  }
+  langMarker.addEventListener("click", setLang);
+
+  const display = document.createElement("textarea");
+  display.rows = 10;
+  display.cols = 50;
+  display.classList.add("display");
+  wrapper.appendChild(display);
+
+  const keyboardWrapper = document.createElement("div");
+  keyboardWrapper.classList.add("keyboard-wrapper");
+  wrapper.appendChild(keyboardWrapper);
+
+  fillKeyboard(isEng);
+
+  const descriptionSection = document.createElement("div");
+  descriptionSection.classList.add("discription-section");
+  const discriptionParagraph = document.createElement("p");
+  discriptionParagraph.classList.add("discription-paragraph");
+  discriptionParagraph.innerText = `The keyboard was created in the Linux OS
+    To switch language, press: Win + Space`;
+  descriptionSection.appendChild(discriptionParagraph);
+  wrapper.appendChild(descriptionSection);
 }
 
-const descriptionSection = document.createElement("div");
-descriptionSection.classList.add("discription-section");
-const windowsParagraph = document.createElement("p");
-windowsParagraph.classList.add("discription-paragraph");
-windowsParagraph.innerText = `Клавиатура создана в операционной системе Linux`;
-descriptionSection.appendChild(windowsParagraph);
-wrapper.appendChild(descriptionSection);
+function fillKeyboard(register) {
+  for (let i = 0; i < KEYBOARD_MAP.length; i++) {
+    const button = document.createElement("div");
+    button.classList.add("button");
+    button.id = KEYBOARD_MAP[i][register];
+    button.classList.add(KEYBOARD_MAP[i][register].toLocaleLowerCase());
+    if (KEYBOARD_MAP[i][register].includes("Ctrl")) {
+      button.innerHTML = `<span>Ctrl</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Shift")) {
+      button.innerHTML = `<span>Shift</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Solidus")) {
+      button.innerHTML = `<span>&#47;</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Space")) {
+      button.innerText = null;
+    } else if (KEYBOARD_MAP[i][register].includes("Up")) {
+      button.innerHTML = `<span>&uarr;</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Left")) {
+      button.innerHTML = `<span>&larr;</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Down")) {
+      button.innerHTML = `<span>&darr;</span>`;
+    } else if (KEYBOARD_MAP[i][register].includes("Right")) {
+      button.innerHTML = `<span>&rarr;</span>`;
+    } else {
+      button.innerHTML = `<span>${KEYBOARD_MAP[i][register]}</span>`;
+    }
+    const keyboardWrapper = document.querySelector(".keyboard-wrapper");
+    keyboardWrapper.appendChild(button);
+  }
+}
 
-formKeyboard();
+function setLang() {
+  const langMarker = document.querySelector(".lang-marker");
+  if (lang === "en") {
+    lang = "by";
+    localStorage.setItem("lang", lang);
+    langMarker.innerText = lang.toUpperCase();
+    langMarker.classList.toggle("en");
+  } else {
+    lang = "en";
+    localStorage.setItem("lang", lang);
+    langMarker.innerText = lang.toUpperCase();
+    langMarker.classList.toggle("en");
+  }
+}
+
+function changeKeyboard() {
+  const keys = document.querySelectorAll(".button");
+}
+
+function handleKeyPress(event) {
+  console.log(event);
+}
+
+document.addEventListener("DOMContentLoaded", formDocument);
+// document.addEventListener("DOMContentLoaded", setLang);
+document.addEventListener("keypress", handleKeyPress);
