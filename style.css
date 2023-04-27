@@ -112,6 +112,7 @@ p {
 
 .clicked {
   background-color: pink;
+  border-radius: 20px;
   transition: 0.5s;
 }
 

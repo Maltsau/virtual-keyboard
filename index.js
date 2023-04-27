@@ -116,7 +116,14 @@ function fillKeyboard(register) {
     button.classList.add("button");
     button.id = KEYBOARD_MAP[i][register];
     button.addEventListener("click", handleButtonClick);
-
+    // console.log(KEYBOARD_MAP[i][register]);
+    if (KEYBOARD_MAP[i][register] !== "CapsLock") {
+      //   console.log(KEYBOARD_MAP[i][register]);
+      button.addEventListener("mousedown", handleButtonMouseDown);
+    }
+    if (KEYBOARD_MAP[i][register].includes("Shift")) {
+      button.addEventListener("mouseup", handleButtonMouseUp);
+    }
     button.classList.add(KEYBOARD_MAP[i][register].toLocaleLowerCase());
     if (KEYBOARD_MAP[i][register].includes("CapsLock") && isUpperRegister) {
       button.classList.add("clicked");
@@ -192,7 +199,7 @@ function handleButtonClick(event) {
     // console.log(buttons);
     for (let i = 0; i < buttons.length; i++) {
       const text = buttons[i].querySelector("span");
-      console.log("text", text);
+      //   console.log("text", text);
       if (isUpperRegister) {
         if (text) {
           lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
@@ -233,6 +240,38 @@ function handleButtonClick(event) {
     setTimeout(() => {
       target.classList.remove("clicked");
     }, 200);
+  }
+}
+
+function handleButtonMouseDown(event) {
+  const target = event.currentTarget;
+  target.classList.add("clicked");
+  //   toggleRegister();
+  if (target.innerText === "Shift") {
+    // console.log("isUpperRegister", isUpperRegister);
+    const shiftText = target.id;
+    if (lang === "en") {
+      fillKeyboard(1);
+      console.log("shift", target.id);
+      const shiftKey = document.querySelector(`#${target.id}`);
+      shiftKey.classList.add("clicked");
+    } else {
+      fillKeyboard(3);
+      console.log("shift", target);
+      const shiftKey = document.querySelector(`#${target.id}`);
+      shiftKey.classList.add("clicked");
+    }
+  }
+}
+
+function handleButtonMouseUp(event) {
+  const target = event.currentTarget;
+  //   toggleRegister();
+  if (lang === "en") {
+    console.log("mouseUp", target);
+    fillKeyboard(0);
+  } else {
+    fillKeyboard(2);
   }
 }
 
