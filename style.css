@@ -17,6 +17,11 @@ p {
   align-items: center;
 }
 
+.heading {
+  color: #ff00de;
+  font-weight: 900;
+}
+
 .display {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -79,11 +84,26 @@ p {
   transition: 0.5s;
 }
 
+.button:hover {
+  color: #ffffff;
+  text-shadow: 0 0 1px #ffffff, 0 0 2px #ffffff, 0 0 3px #ffffff,
+    0 0 4px #ff00de, 0 0 5px #ff00de, 0 0 6px #ff00de, 0 0 7px #ff00de,
+    0 0 8px #ff00de;
+  font-size: 27px;
+  font-weight: 900;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
 .backspace,
 .enter,
 .right-shift {
   background-color: black;
   grid-column: 14/16;
+}
+
+.backspace > span {
+  transform: scale(0.9, 1);
 }
 
 .capslock,

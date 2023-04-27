@@ -77,6 +77,11 @@ function formDocument() {
   wrapper.classList.add("wrapper");
   document.body.insertAdjacentElement("afterbegin", wrapper);
 
+  const heading = document.createElement("h1");
+  heading.classList.add("heading");
+  heading.innerText = `Virtual Keyboard`;
+  wrapper.appendChild(heading);
+
   const langMarker = document.createElement("div");
   langMarker.classList.add("lang-marker");
   wrapper.appendChild(langMarker);
@@ -91,6 +96,7 @@ function formDocument() {
   display.cols = 50;
   display.classList.add("display");
   wrapper.appendChild(display);
+  display.focus();
 
   const keyboardWrapper = document.createElement("div");
   keyboardWrapper.classList.add("keyboard-wrapper");
@@ -190,51 +196,11 @@ function setLang() {
 
 function handleButtonClick(event) {
   const display = document.querySelector(".display");
-  display.focus();
-  //   display.value += event.currentTarget.id;
+  display.value += event.currentTarget.innerText;
   console.log("event.target.id", event.currentTarget.id);
   const target = event.currentTarget;
   if (target.classList.contains("capslock")) {
-    const buttons = document.querySelectorAll(".button");
-    // console.log(buttons);
-    for (let i = 0; i < buttons.length; i++) {
-      const text = buttons[i].querySelector("span");
-      //   console.log("text", text);
-      if (isUpperRegister) {
-        if (text) {
-          lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
-        }
-      } else {
-        if (text) {
-          if (
-            text.innerText.includes("Alt") ||
-            text.innerText.includes("Ctrl") ||
-            text.innerText.includes("Shift") ||
-            text.innerText.includes("Tab") ||
-            text.innerText.includes("Del") ||
-            text.innerText.includes("CapsLock") ||
-            text.innerText.includes("Win") ||
-            text.innerText.includes("Enter") ||
-            text.innerText.includes("Backspace")
-          ) {
-            continue;
-          } else {
-            text.innerText = text.innerText.toUpperCase();
-          }
-        }
-      }
-    }
-    const capsLockKey = document.querySelector(".capslock");
-    capsLockKey.classList.toggle("clicked");
-    toggleRegister();
-    // console.log("isUpperRegister", isUpperRegister);
-    // if (lang === "en") {
-    //   console.log("english", isUpperRegister);
-    //   isUpperRegister ? fillKeyboard(1) : fillKeyboard(0);
-    // } else {
-    //   console.log("belarussian", isUpperRegister);
-    //   isUpperRegister ? fillKeyboard(3) : fillKeyboard(2);
-    // }
+    handleCapsLock();
   } else if (target.classList.contains("button")) {
     target.classList.add("clicked");
     setTimeout(() => {
@@ -269,21 +235,68 @@ function handleButtonMouseUp(event) {
   //   toggleRegister();
   if (lang === "en") {
     console.log("mouseUp", target);
-    fillKeyboard(0);
+    if (isUpperRegister) {
+      fillKeyboard(0);
+      handleCapsLock();
+    } else {
+      fillKeyboard(0);
+    }
   } else {
-    fillKeyboard(2);
+    if (isUpperRegister) {
+      fillKeyboard(2);
+      handleCapsLock();
+    } else {
+      fillKeyboard(2);
+    }
   }
+}
+
+function handleCapsLock() {
+  const buttons = document.querySelectorAll(".button");
+  // console.log(buttons);
+  for (let i = 0; i < buttons.length; i++) {
+    const text = buttons[i].querySelector("span");
+    //   console.log("text", text);
+    if (isUpperRegister) {
+      if (text) {
+        lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
+      }
+    } else {
+      if (text) {
+        if (
+          text.innerText.includes("Alt") ||
+          text.innerText.includes("Ctrl") ||
+          text.innerText.includes("Shift") ||
+          text.innerText.includes("Tab") ||
+          text.innerText.includes("Del") ||
+          text.innerText.includes("CapsLock") ||
+          text.innerText.includes("Win") ||
+          text.innerText.includes("Enter") ||
+          text.innerText.includes("Backspace")
+        ) {
+          continue;
+        } else {
+          text.innerText = text.innerText.toUpperCase();
+        }
+      }
+    }
+  }
+  const capsLockKey = document.querySelector(".capslock");
+  capsLockKey.classList.toggle("clicked");
+  toggleRegister();
 }
 
 function toggleRegister() {
   isUpperRegister = !isUpperRegister;
 }
 
-function handleKeyPress(event) {
+function handleKeyDown(event) {
   event.preventDefault();
-
   console.log(event);
+  if (event.ctrlKey && event.key === "Alt") {
+    setLang();
+  }
 }
 
 document.addEventListener("DOMContentLoaded", formDocument);
-document.addEventListener("keypress", handleKeyPress);
+document.addEventListener("keydown", handleKeyDown);
