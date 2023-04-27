@@ -26,6 +26,7 @@ p {
   border: solid darkgrey 1px;
   border-radius: 5px;
   resize: none;
+  font-size: 2em;
 }
 
 .lang-marker {
@@ -50,7 +51,7 @@ p {
 }
 
 .keyboard-wrapper {
-  padding: 5px 0 5px 0;
+  padding: 5px;
   background-color: darkgrey;
   border: solid black 2px;
   border-radius: 5px;
@@ -63,14 +64,8 @@ p {
   column-gap: 8px;
 }
 
-.discription-section {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
 .button {
-  margin: 4px;
+  margin: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,6 +113,16 @@ p {
 .clicked {
   background-color: pink;
   transition: 0.5s;
+}
+
+.discription-section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.discription-paragraph {
+  font-size: 1.5em;
 }
 
 @media only screen and (min-width: 1300px) {
