@@ -66,20 +66,90 @@
 // ];
 
 const KEYBOARD_MAP_2 = [
-  { charcode: 192, desc: "backticks", eng: "`", engShift: "~", by: "ё" },
-  { charcode: 49, desc: "1", eng: "1", engShift: "!", by: "1", byShift: "!" },
-  { charcode: 50, desc: "2", eng: "2", engShift: "@", by: "2", byShift: '"' },
-  { charcode: 51, desc: "3", eng: "3", engShift: "#", by: "3", byShift: "№" },
-  { charcode: 52, desc: "4", eng: "4", engShift: "$", by: "4", byShift: ";" },
-  { charcode: 53, desc: "5", eng: "5", engShift: "%", by: "5", byShift: "%" },
-  { charcode: 54, desc: "6", eng: "6", engShift: "^", by: "6", byShift: ":" },
-  { charcode: 55, desc: "7", eng: "7", engShift: "&", by: "7", byShift: "?" },
-  { charcode: 56, desc: "8", eng: "8", engShift: "*", by: "8", byShift: "*" },
-  { charcode: 57, desc: "9", eng: "9", engShift: "(", by: "9", byShift: "(" },
-  { charcode: 48, desc: "0", eng: "0", engShift: ")", by: "0", byShift: ")" },
+  { charcode: 192, desc: "Backquote", eng: "`", engShift: "~", by: "ё" },
+  {
+    charcode: 49,
+    desc: "Digit1",
+    eng: "1",
+    engShift: "!",
+    by: "1",
+    byShift: "!",
+  },
+  {
+    charcode: 50,
+    desc: "Digit2",
+    eng: "2",
+    engShift: "@",
+    by: "2",
+    byShift: '"',
+  },
+  {
+    charcode: 51,
+    desc: "Digit3",
+    eng: "3",
+    engShift: "#",
+    by: "3",
+    byShift: "№",
+  },
+  {
+    charcode: 52,
+    desc: "Digit4",
+    eng: "4",
+    engShift: "$",
+    by: "4",
+    byShift: ";",
+  },
+  {
+    charcode: 53,
+    desc: "Digit5",
+    eng: "5",
+    engShift: "%",
+    by: "5",
+    byShift: "%",
+  },
+  {
+    charcode: 54,
+    desc: "Digit6",
+    eng: "6",
+    engShift: "^",
+    by: "6",
+    byShift: ":",
+  },
+  {
+    charcode: 55,
+    desc: "Digit7",
+    eng: "7",
+    engShift: "&",
+    by: "7",
+    byShift: "?",
+  },
+  {
+    charcode: 56,
+    desc: "Digit8",
+    eng: "8",
+    engShift: "*",
+    by: "8",
+    byShift: "*",
+  },
+  {
+    charcode: 57,
+    desc: "Digit9",
+    eng: "9",
+    engShift: "(",
+    by: "9",
+    byShift: "(",
+  },
+  {
+    charcode: 48,
+    desc: "Digit0",
+    eng: "0",
+    engShift: ")",
+    by: "0",
+    byShift: ")",
+  },
   {
     charcode: 189,
-    desc: "minus",
+    desc: "Minus",
     eng: "-",
     engShift: "_",
     by: "-",
@@ -87,7 +157,7 @@ const KEYBOARD_MAP_2 = [
   },
   {
     charcode: 187,
-    desc: "plus",
+    desc: "Equal",
     eng: "=",
     engShift: "+",
     by: "=",
@@ -95,32 +165,32 @@ const KEYBOARD_MAP_2 = [
   },
   {
     charcode: 8,
-    desc: "backspace",
+    desc: "Backspace",
     eng: "Backspace",
     by: "Backspace",
     isSpecial: true,
   },
-  { charcode: 9, desc: "tab", eng: "Tab", by: "Tab", isSpecial: true },
-  { charcode: 81, desc: "q", eng: "q", by: "й" },
-  { charcode: 87, desc: "w", eng: "w", by: "ц" },
-  { charcode: 69, desc: "e", eng: "e", by: "у" },
-  { charcode: 82, desc: "r", eng: "r", by: "к" },
-  { charcode: 84, desc: "t", eng: "t", by: "е" },
-  { charcode: 89, desc: "y", eng: "y", by: "н" },
-  { charcode: 85, desc: "u", eng: "u", by: "г" },
-  { charcode: 73, desc: "i", eng: "i", by: "ш" },
-  { charcode: 79, desc: "o", eng: "o", by: "ў" },
-  { charcode: 80, desc: "p", eng: "p", by: "з" },
+  { charcode: 9, desc: "Tab", eng: "Tab", by: "Tab", isSpecial: true },
+  { charcode: 81, desc: "KeyQ", eng: "q", by: "й" },
+  { charcode: 87, desc: "KeyW", eng: "w", by: "ц" },
+  { charcode: 69, desc: "KeyE", eng: "e", by: "у" },
+  { charcode: 82, desc: "KeyR", eng: "r", by: "к" },
+  { charcode: 84, desc: "KeyT", eng: "t", by: "е" },
+  { charcode: 89, desc: "KeyY", eng: "y", by: "н" },
+  { charcode: 85, desc: "KeyU", eng: "u", by: "г" },
+  { charcode: 73, desc: "KeyI", eng: "i", by: "ш" },
+  { charcode: 79, desc: "KeyO", eng: "o", by: "ў" },
+  { charcode: 80, desc: "KeyP", eng: "p", by: "з" },
   {
     charcode: 219,
-    desc: "square-bracket-open",
+    desc: "BracketLeft",
     eng: "[",
     engShift: "{",
     by: "х",
   },
   {
     charcode: 221,
-    desc: "square-bracket-close",
+    desc: "BracketRight",
     eng: "]",
     engShift: "}",
     by: "'",
@@ -128,57 +198,57 @@ const KEYBOARD_MAP_2 = [
   },
   {
     charcode: 220,
-    desc: "solidus",
+    desc: "Backslash",
     eng: "&#92;",
     engShift: "|",
     by: "&#92;",
     byShift: "/",
   },
-  { charcode: 46, desc: "del", eng: "Del", by: "Del", isSpecial: true },
+  { charcode: 46, desc: "Delete", eng: "Del", by: "Del", isSpecial: true },
   {
     charcode: 20,
-    desc: "capslock",
+    desc: "CapsLock",
     eng: "CapsLock",
     by: "CapsLock",
     isSpecial: true,
   },
-  { charcode: 65, desc: "a", eng: "a", by: "ф" },
-  { charcode: 83, desc: "s", eng: "s", by: "ы" },
-  { charcode: 68, desc: "d", eng: "d", by: "в" },
-  { charcode: 70, desc: "f", eng: "f", by: "а" },
-  { charcode: 71, desc: "g", eng: "g", by: "п" },
-  { charcode: 72, desc: "h", eng: "h", by: "р" },
-  { charcode: 74, desc: "j", eng: "j", by: "о" },
-  { charcode: 75, desc: "k", eng: "k", by: "л" },
-  { charcode: 76, desc: "l", eng: "l", by: "д" },
-  { charcode: 186, desc: "semicolon", eng: ";", engShift: ":", by: "ж" },
-  { charcode: 222, desc: "quotes", eng: "'", engShift: '"', by: "э" },
-  { charcode: 13, desc: "enter", eng: "Enter", by: "Enter", isSpecial: true },
+  { charcode: 65, desc: "KeyA", eng: "a", by: "ф" },
+  { charcode: 83, desc: "KeyS", eng: "s", by: "ы" },
+  { charcode: 68, desc: "KeyD", eng: "d", by: "в" },
+  { charcode: 70, desc: "KeyF", eng: "f", by: "а" },
+  { charcode: 71, desc: "KeyG", eng: "g", by: "п" },
+  { charcode: 72, desc: "KeyH", eng: "h", by: "р" },
+  { charcode: 74, desc: "KeyJ", eng: "j", by: "о" },
+  { charcode: 75, desc: "KeyK", eng: "k", by: "л" },
+  { charcode: 76, desc: "KeyL", eng: "l", by: "д" },
+  { charcode: 186, desc: "Semicolon", eng: ";", engShift: ":", by: "ж" },
+  { charcode: 222, desc: "Quote", eng: "'", engShift: '"', by: "э" },
+  { charcode: 13, desc: "Enter", eng: "Enter", by: "Enter", isSpecial: true },
   {
     charcode: 16,
-    desc: "shift-left",
+    desc: "ShiftLeft",
     eng: "Shift",
     by: "Shift",
     isSpecial: true,
   },
-  { charcode: 90, desc: "z", eng: "z", by: "я" },
-  { charcode: 88, desc: "x", eng: "x", by: "ч" },
-  { charcode: 67, desc: "c", eng: "c", by: "с" },
-  { charcode: 86, desc: "v", eng: "v", by: "м" },
-  { charcode: 66, desc: "b", eng: "b", by: "і" },
-  { charcode: 78, desc: "n", eng: "n", by: "т" },
-  { charcode: 77, desc: "m", eng: "m", by: "ь" },
-  { charcode: 188, desc: "comma", eng: ",", engShift: "<", by: "б" },
+  { charcode: 90, desc: "KeyZ", eng: "z", by: "я" },
+  { charcode: 88, desc: "KeyX", eng: "x", by: "ч" },
+  { charcode: 67, desc: "KeyC", eng: "c", by: "с" },
+  { charcode: 86, desc: "KeyV", eng: "v", by: "м" },
+  { charcode: 66, desc: "KeyB", eng: "b", by: "і" },
+  { charcode: 78, desc: "KeyN", eng: "n", by: "т" },
+  { charcode: 77, desc: "KeyM", eng: "m", by: "ь" },
+  { charcode: 188, desc: "Comma", eng: ",", engShift: "<", by: "б" },
   {
     charcode: 190,
-    desc: "dot",
+    desc: "Period",
     eng: ".",
     engShift: ">",
     by: "ю",
   },
   {
     charcode: 191,
-    desc: "slash",
+    desc: "Slash",
     eng: "/",
     engShift: "?",
     by: ".",
@@ -186,47 +256,53 @@ const KEYBOARD_MAP_2 = [
   },
   {
     charcode: 38,
-    desc: "arrow-up",
+    desc: "ArrowUp",
     eng: "&uarr;",
     by: "&uarr;",
     isSpecial: true,
   },
   {
     charcode: 16,
-    desc: "shift-right",
+    desc: "ShiftRight",
     eng: "Shift",
     by: "Shift",
     isSpecial: true,
   },
-  { charcode: 17, desc: "ctrl-left", eng: "Ctrl", by: "Ctrl", isSpecial: true },
-  { charcode: 91, desc: "win", eng: "Win", by: "Win", isSpecial: true },
-  { charcode: 18, desc: "alt-left", eng: "Alt", by: "Alt", isSpecial: true },
-  { charcode: 32, desc: "space", eng: " ", by: " ", isSpecial: true },
-  { charcode: 18, desc: "alt-right", eng: "Alt", by: "Alt", isSpecial: true },
+  {
+    charcode: 17,
+    desc: "ControlLeft",
+    eng: "Ctrl",
+    by: "Ctrl",
+    isSpecial: true,
+  },
+  { charcode: 91, desc: "Win", eng: "Win", by: "Win", isSpecial: true },
+  { charcode: 18, desc: "AltLeft", eng: "Alt", by: "Alt", isSpecial: true },
+  { charcode: 32, desc: "Space", eng: " ", by: " ", isSpecial: true },
+  { charcode: 18, desc: "AltRight", eng: "Alt", by: "Alt", isSpecial: true },
   {
     charcode: 37,
-    desc: "arrow-left",
+    desc: "ArrowLeft",
     eng: "&larr;",
     by: "&larr;",
     isSpecial: true,
   },
   {
     charcode: 40,
-    desc: "arrow-down",
+    desc: "ArrowDown",
     eng: "&darr;",
     by: "&darr;",
     isSpecial: true,
   },
   {
     charcode: 39,
-    desc: "arrow-right",
+    desc: "ArrowRight",
     eng: "&rarr;",
     by: "&rarr;",
     isSpecial: true,
   },
   {
     charcode: 17,
-    desc: "ctrl-right",
+    desc: "ControlRight",
     eng: "Ctrl",
     by: "Ctrl",
     isSpecial: true,
@@ -236,6 +312,74 @@ const KEYBOARD_MAP_2 = [
 let lang = localStorage.lang ? localStorage.lang : "en";
 let shiftPressed = false;
 let capsLockPressed = false;
+
+// const codes = [
+//   "Backquote",
+//   "Digit1",
+//   "Digit2",
+//   "Digit3",
+//   "Digit4",
+//   "Digit5",
+//   "Digit6",
+//   "Digit7",
+//   "Digit8",
+//   "Digit9",
+//   "Digit0",
+//   "Minus",
+//   "Equal",
+//   "Backspace",
+//   "Tab",
+//   "KeyQ",
+//   "KeyW",
+//   "KeyE",
+//   "KeyR",
+//   "KeyT",
+//   "KeyY",
+//   "KeyU",
+//   "KeyI",
+//   "KeyO",
+//   "KeyP",
+//   "BracketLeft",
+//   "BracketRight",
+//   "Backslash",
+//   "Delete",
+//   "CapsLock",
+//   "KeyA",
+//   "KeyS",
+//   "KeyD",
+//   "KeyF",
+//   "KeyG",
+//   "KeyH",
+//   "KeyJ",
+//   "KeyK",
+//   "KeyL",
+//   "Semicolon",
+//   "Quote",
+//   "Enter",
+//   "ShiftLeft",
+//   "KeyZ",
+//   "KeyX",
+//   "KeyC",
+//   "KeyV",
+//   "KeyB",
+//   "KeyN",
+//   "KeyM",
+//   "Comma",
+//   "Period",
+//   "Slash",
+//   "ArrowUp",
+//   "ShiftRight",
+//   "ControlLeft",
+//   "Win",
+//   "AltLeft",
+//   "Space",
+//   "AltRight",
+//   "ArrowLeft",
+//   "ArrowDown",
+//   "ArrowRight",
+//   "ControlRight",
+//   ,
+// ];
 
 function formDocument() {
   //   let isEng = 0;
@@ -349,6 +493,7 @@ function fillKeyboard() {
       button.classList.add("special");
     }
     button.id = KEYBOARD_MAP_2[i].desc;
+    button.dataset.keyCode = KEYBOARD_MAP_2[i].charcode;
     button.addEventListener("mousedown", handleButtonMouseDown);
     button.addEventListener("mouseup", handleButtonMouseUp);
 
@@ -399,11 +544,13 @@ function fillKeyboard() {
     keyboardWrapper.appendChild(button);
   }
 
-  const capsLockKey = document.querySelector("#capslock");
-  //   console.log("capsLockKey", capsLockKey);
+  const capsLockKey = document.querySelector("#CapsLock");
   if (capsLockPressed) {
     capsLockKey.classList.add("clicked");
   }
+  //   const shiftKey = document.querySelector(`#${shiftPressed}`);
+  //   console.log("shift", shiftKey);
+  //   shiftKey.classList.add("clicked");
 }
 
 function fillDescription() {
@@ -426,7 +573,7 @@ function setLang() {
     fillKeyboard();
     fillDescription();
     langMarker.innerText = lang.toUpperCase();
-    const capsLockKey = document.querySelector("#capslock");
+    const capsLockKey = document.querySelector("#CapsLock");
     capsLockPressed = false;
     capsLockKey.classList.remove("clicked");
   } else {
@@ -435,40 +582,42 @@ function setLang() {
     fillKeyboard();
     fillDescription();
     langMarker.innerText = lang.toUpperCase();
-    const capsLockKey = document.querySelector("#capslock");
+    const capsLockKey = document.querySelector("#CapsLock");
     capsLockPressed = false;
     capsLockKey.classList.remove("clicked");
   }
 }
 
-function handleButtonClick(event) {
-  //   const display = document.querySelector(".display");
-  //   display.value += event.currentTarget.innerText;
-  //   //   console.log("event.target.id", event.currentTarget.id);
-  //   const target = event.currentTarget;
-  //   if (target.id.contains("capslock")) {
-  //     handleCapsLock();
-  //   } else if (target.classList.contains("button")) {
-  //     target.classList.add("clicked");
-  //     setTimeout(() => {
-  //       target.classList.remove("clicked");
-  //     }, 200);
-  //   }
-}
+// function handleButtonClick(event) {
+//   //   const display = document.querySelector(".display");
+//   //   display.value += event.currentTarget.innerText;
+//   //   //   console.log("event.target.id", event.currentTarget.id);
+//   //   const target = event.currentTarget;
+//   //   if (target.id.contains("capslock")) {
+//   //     handleCapsLock();
+//   //   } else if (target.classList.contains("button")) {
+//   //     target.classList.add("clicked");
+//   //     setTimeout(() => {
+//   //       target.classList.remove("clicked");
+//   //     }, 200);
+//   //   }
+// }
 
 function handleButtonMouseDown(event) {
   if (event.currentTarget.classList.contains("button")) {
     event.currentTarget.classList.toggle("clicked");
     // const whichShift = event.currentTarget.id;
     // console.log(whichShift);
-    if (event.target.id.includes("shift")) {
-      shiftPressed = true;
+    if (event.currentTarget.id.includes("Shift")) {
+      shiftPressed = event.currentTarget.id;
       fillKeyboard();
-      //   const shiftKey = document.querySelector(`.${whichShift}`);
-      //   console.log("shiftKey", shiftKey);
-      //   shiftKey.classList.add("clicked");
+      console.log("which shift", shiftPressed);
+
+      const shiftKey = document.querySelector(`#${shiftPressed}`);
+      console.log("shiftKey", shiftKey);
+      shiftKey.classList.add("clicked");
     }
-    if (event.target.id.includes("capslock")) {
+    if (event.currentTarget.id.includes("CapsLock")) {
       capsLockPressed = !capsLockPressed;
       fillKeyboard();
     }
@@ -497,9 +646,9 @@ function handleButtonMouseDown(event) {
 
 function handleButtonMouseUp(event) {
   const target = event.currentTarget;
-  if (target.id !== "capslock") {
+  if (target.id !== "CapsLock") {
     target.classList.remove("clicked");
-    if (target.id.includes("shift")) {
+    if (target.id.includes("Shift")) {
       shiftPressed = false;
       fillKeyboard();
     }
@@ -526,40 +675,40 @@ function handleButtonMouseUp(event) {
   //   }
 }
 
-function handleCapsLock() {
-  //   const buttons = document.querySelectorAll(".button");
-  //   // console.log(buttons);
-  //   for (let i = 0; i < buttons.length; i++) {
-  //     const text = buttons[i].querySelector("span");
-  //     //   console.log("text", text);
-  //     if (isUpperRegister) {
-  //       if (text) {
-  //         lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
-  //       }
-  //     } else {
-  //       if (text) {
-  //         if (
-  //           text.innerText.includes("Alt") ||
-  //           text.innerText.includes("Ctrl") ||
-  //           text.innerText.includes("Shift") ||
-  //           text.innerText.includes("Tab") ||
-  //           text.innerText.includes("Del") ||
-  //           text.innerText.includes("CapsLock") ||
-  //           text.innerText.includes("Win") ||
-  //           text.innerText.includes("Enter") ||
-  //           text.innerText.includes("Backspace")
-  //         ) {
-  //           continue;
-  //         } else {
-  //           text.innerText = text.innerText.toUpperCase();
-  //         }
-  //       }
-  //     }
-  //   }
-  //   const capsLockKey = document.querySelector(".capslock");
-  //   capsLockKey.classList.toggle("clicked");
-  //   toggleRegister();
-}
+// function handleCapsLock() {
+//   //   const buttons = document.querySelectorAll(".button");
+//   //   // console.log(buttons);
+//   //   for (let i = 0; i < buttons.length; i++) {
+//   //     const text = buttons[i].querySelector("span");
+//   //     //   console.log("text", text);
+//   //     if (isUpperRegister) {
+//   //       if (text) {
+//   //         lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
+//   //       }
+//   //     } else {
+//   //       if (text) {
+//   //         if (
+//   //           text.innerText.includes("Alt") ||
+//   //           text.innerText.includes("Ctrl") ||
+//   //           text.innerText.includes("Shift") ||
+//   //           text.innerText.includes("Tab") ||
+//   //           text.innerText.includes("Del") ||
+//   //           text.innerText.includes("CapsLock") ||
+//   //           text.innerText.includes("Win") ||
+//   //           text.innerText.includes("Enter") ||
+//   //           text.innerText.includes("Backspace")
+//   //         ) {
+//   //           continue;
+//   //         } else {
+//   //           text.innerText = text.innerText.toUpperCase();
+//   //         }
+//   //       }
+//   //     }
+//   //   }
+//   //   const capsLockKey = document.querySelector(".capslock");
+//   //   capsLockKey.classList.toggle("clicked");
+//   //   toggleRegister();
+// }
 
 // function handleShift(event) {
 //   const target = event.currentTarget;
@@ -576,63 +725,70 @@ function handleCapsLock() {
 //   }
 // }
 
-function toggleRegister() {
-  isUpperRegister = !isUpperRegister;
-}
+// function toggleRegister() {
+//   isUpperRegister = !isUpperRegister;
+// }
 
-// const keyCodes = [
-//   192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82,
-//   84, 89, 85, 73, 79, 80, 219, 221, 220, 46, 20, 65, 83, 68, 70, 71, 72, 74, 75,
-//   76, 186, 222, 13, 16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 38, 16, 17,
-//   18, 32, 18, 37, 40, 39, 17,
-// ];
 // console.log(keyCodes.length, KEYBOARD_MAP.length);
+
 function handleKeyDown(event) {
-  console.log(event.keyCode);
+  //   codes.push(event.code);
+  //   console.log(codes);
+  //   console.log(event.keyCode);
   //   const target = event.currentTarget;
-  event.preventDefault();
-  event.stopPropagation();
-  //   keyCodes.push(event.keyCode);
-  //   console.log(keyCodes);
+  //   event.preventDefault();
+  //   event.stopPropagation();
   //   console.log(event);
+  const buttons = document.querySelectorAll(".button");
+  //   console.log(buttons);
+  for (let i = 0; i < buttons.length; i++) {
+    // console.log("data", buttons[i].dataset.keyCode, "event", event.keyCode);
+    if (buttons[i].id === event.code) {
+      buttons[i].classList.add("clicked");
+    }
+  }
   if (event.ctrlKey && event.key === "Alt") {
     setLang();
   }
-  if (event.key === "Shift") {
-    if (lang === "en") {
-      fillKeyboard(1);
-      console.log("shift", event);
-      //   const shiftKey = document.querySelector(`.${event.key}`);
-      //   shiftKey.classList.add("clicked");
-    } else {
-      fillKeyboard(3);
-      console.log("shift", event);
-      //   const shiftKey = document.querySelector(`.${event.key}`);
-      //   shiftKey.classList.add("clicked");
-    }
-  }
-  console.log(event.defaultPrevented);
+  //   if (event.key === "Shift") {
+  //     if (lang === "en") {
+  //       fillKeyboard(1);
+  //       console.log("shift", event);
+  //       //   const shiftKey = document.querySelector(`.${event.key}`);
+  //       //   shiftKey.classList.add("clicked");
+  //     } else {
+  //       fillKeyboard(3);
+  //       console.log("shift", event);
+  //       //   const shiftKey = document.querySelector(`.${event.key}`);
+  //       //   shiftKey.classList.add("clicked");
+  //     }
+  //   }
+  //   console.log(event.defaultPrevented);
 }
 
 function handleKeyUp(event) {
-  event.preventDefault();
-  event.stopPropagation();
-  if (lang === "en") {
-    fillKeyboard(0);
-    // console.log("unshift", target);
-    // const shiftKey = document.querySelector(`#${target.id}`);
-    // shiftKey.classList.add("clicked");
-  } else {
-    fillKeyboard(2);
-    // console.log("unshift", target);
-    // const shiftKey = document.querySelector(`#${target.id}`);
-    // shiftKey.classList.add("clicked");
+  const buttons = document.querySelectorAll(".button");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("clicked");
   }
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   if (lang === "en") {
+  //     fillKeyboard(0);
+  //     // console.log("unshift", target);
+  //     // const shiftKey = document.querySelector(`#${target.id}`);
+  //     // shiftKey.classList.add("clicked");
+  //   } else {
+  //     fillKeyboard(2);
+  //     // console.log("unshift", target);
+  //     // const shiftKey = document.querySelector(`#${target.id}`);
+  //     // shiftKey.classList.add("clicked");
+  //   }
 }
 
 function handleKeyPress(event) {
-  event.preventDefault();
-  event.stopPropagation();
+  //   event.preventDefault();
+  //   event.stopPropagation();
 }
 
 document.addEventListener("DOMContentLoaded", formDocument);

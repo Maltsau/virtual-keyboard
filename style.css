@@ -95,24 +95,24 @@ p {
   transition: 0.5s;
 }
 
-#backspace,
-#enter,
-#shift-right {
+#Backspace,
+#Enter,
+#ShiftRight {
   /* background-color: black; */
   grid-column: 14/16;
 }
 
-#backspace > span {
+#Backspace > span {
   transform: scale(0.9, 1);
 }
 
-#capslock,
-#shift-left {
+#CapsLock,
+#ShiftLeft {
   /* background-color: black; */
   grid-column: 1/3;
 }
 
-#space {
+#Space {
   /* background-color: black; */
   grid-column: 4/11;
 }
