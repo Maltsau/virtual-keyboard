@@ -65,7 +65,7 @@
 //   ["Right-Ctrl", "Right-Ctrl", "Right-Ctrl", "Right-Ctrl"],
 // ];
 
-const KEYBOARD_MAP_2 = [
+const KEYBOARD_MAP = [
   { charcode: 192, desc: "Backquote", eng: "`", engShift: "~", by: "ё" },
   {
     charcode: 49,
@@ -313,74 +313,6 @@ let lang = localStorage.lang ? localStorage.lang : "en";
 let shiftPressed = false;
 let capsLockPressed = false;
 
-// const codes = [
-//   "Backquote",
-//   "Digit1",
-//   "Digit2",
-//   "Digit3",
-//   "Digit4",
-//   "Digit5",
-//   "Digit6",
-//   "Digit7",
-//   "Digit8",
-//   "Digit9",
-//   "Digit0",
-//   "Minus",
-//   "Equal",
-//   "Backspace",
-//   "Tab",
-//   "KeyQ",
-//   "KeyW",
-//   "KeyE",
-//   "KeyR",
-//   "KeyT",
-//   "KeyY",
-//   "KeyU",
-//   "KeyI",
-//   "KeyO",
-//   "KeyP",
-//   "BracketLeft",
-//   "BracketRight",
-//   "Backslash",
-//   "Delete",
-//   "CapsLock",
-//   "KeyA",
-//   "KeyS",
-//   "KeyD",
-//   "KeyF",
-//   "KeyG",
-//   "KeyH",
-//   "KeyJ",
-//   "KeyK",
-//   "KeyL",
-//   "Semicolon",
-//   "Quote",
-//   "Enter",
-//   "ShiftLeft",
-//   "KeyZ",
-//   "KeyX",
-//   "KeyC",
-//   "KeyV",
-//   "KeyB",
-//   "KeyN",
-//   "KeyM",
-//   "Comma",
-//   "Period",
-//   "Slash",
-//   "ArrowUp",
-//   "ShiftRight",
-//   "ControlLeft",
-//   "Win",
-//   "AltLeft",
-//   "Space",
-//   "AltRight",
-//   "ArrowLeft",
-//   "ArrowDown",
-//   "ArrowRight",
-//   "ControlRight",
-//   ,
-// ];
-
 function formDocument() {
   //   let isEng = 0;
   //   if (lang === "by") {
@@ -451,7 +383,8 @@ function fillKeyboard() {
   );
   const keyboardWrapper = document.querySelector(".keyboard-wrapper");
   keyboardWrapper.innerHTML = null;
-  for (let i = 0; i < KEYBOARD_MAP_2.length; i++) {
+  const enterPress = new KeyboardEvent("keyup", { key: "Enter", char: 13 });
+  for (let i = 0; i < KEYBOARD_MAP.length; i++) {
     // const button = document.createElement("div");
     // button.classList.add("button");
     // button.id = KEYBOARD_MAP[i][register];
@@ -489,31 +422,37 @@ function fillKeyboard() {
     // }
     const button = document.createElement("div");
     button.classList.add("button");
-    if (KEYBOARD_MAP_2[i].isSpecial) {
+    if (KEYBOARD_MAP[i].isSpecial) {
       button.classList.add("special");
     }
-    button.id = KEYBOARD_MAP_2[i].desc;
-    button.dataset.keyCode = KEYBOARD_MAP_2[i].charcode;
+    button.id = KEYBOARD_MAP[i].desc;
+    // button.dataset.keyCode = KEYBOARD_MAP_2[i].charcode;
     button.addEventListener("mousedown", handleButtonMouseDown);
     button.addEventListener("mouseup", handleButtonMouseUp);
+    if (button.id.includes("Enter")) {
+      //   console.log("added on enter", enterPress);
+      button.addEventListener("click", () => {
+        document.dispatchEvent(enterPress);
+      });
+    }
 
     if (lang === "en") {
       if (capsLockPressed) {
         button.classList.contains("special")
-          ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`)
-          : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+          ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`)
+          : (button.innerHTML = `<span>${KEYBOARD_MAP[
               i
             ].eng.toUpperCase()}</span>`);
       } else {
-        button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`;
+        button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`;
       }
       if (shiftPressed) {
-        if (KEYBOARD_MAP_2[i].engShift) {
-          button.innerHTML = `<span>${KEYBOARD_MAP_2[i].engShift}</span>`;
+        if (KEYBOARD_MAP[i].engShift) {
+          button.innerHTML = `<span>${KEYBOARD_MAP[i].engShift}</span>`;
         } else {
           button.classList.contains("special")
-            ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`)
-            : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+            ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`)
+            : (button.innerHTML = `<span>${KEYBOARD_MAP[
                 i
               ].eng.toUpperCase()}</span>`);
         }
@@ -521,20 +460,20 @@ function fillKeyboard() {
     } else {
       if (capsLockPressed) {
         button.classList.contains("special")
-          ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`)
-          : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+          ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`)
+          : (button.innerHTML = `<span>${KEYBOARD_MAP[
               i
             ].by.toUpperCase()}</span>`);
       } else {
-        button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`;
+        button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`;
       }
       if (shiftPressed) {
-        if (KEYBOARD_MAP_2[i].byShift) {
-          button.innerHTML = `<span>${KEYBOARD_MAP_2[i].byShift}</span>`;
+        if (KEYBOARD_MAP[i].byShift) {
+          button.innerHTML = `<span>${KEYBOARD_MAP[i].byShift}</span>`;
         } else {
           button.classList.contains("special")
-            ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`)
-            : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+            ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`)
+            : (button.innerHTML = `<span>${KEYBOARD_MAP[
                 i
               ].by.toUpperCase()}</span>`);
         }
@@ -552,19 +491,16 @@ function fillKeyboard() {
     whichShift = document.querySelector(`#${shiftPressed}`);
     whichShift.classList.add("clicked");
   }
-  //   const shiftKey = document.querySelector(`#${shiftPressed}`);
-  //   console.log("shift", shiftKey);
-  //   shiftKey.classList.add("clicked");
 }
 
 function fillDescription() {
   const discriptionParagraph = document.querySelector(".discription-paragraph");
   if (lang === "en") {
     discriptionParagraph.innerText = `The keyboard was created in the Linux OS
-    To switch language, press: Win + Space`;
+    To switch language, press: Alt + Ctrl`;
   } else {
     discriptionParagraph.innerText = `Клавіятура створана ў АC Linux
-    Каб пераключыць мову, націсніце: Win + Space`;
+    Каб пераключыць мову, націсніце: Alt + Ctrl`;
   }
 }
 
@@ -574,20 +510,20 @@ function setLang() {
   if (lang === "en") {
     lang = "by";
     localStorage.setItem("lang", lang);
+    capsLockPressed = false;
     fillKeyboard();
     fillDescription();
     langMarker.innerText = lang.toUpperCase();
     const capsLockKey = document.querySelector("#CapsLock");
-    capsLockPressed = false;
     capsLockKey.classList.remove("clicked");
   } else {
     lang = "en";
     localStorage.setItem("lang", lang);
+    capsLockPressed = false;
     fillKeyboard();
     fillDescription();
     langMarker.innerText = lang.toUpperCase();
     const capsLockKey = document.querySelector("#CapsLock");
-    capsLockPressed = false;
     capsLockKey.classList.remove("clicked");
   }
 }
@@ -625,6 +561,8 @@ function handleButtonMouseDown(event) {
       capsLockPressed = !capsLockPressed;
       fillKeyboard();
     }
+    if (event.currentTarget.id.includes("Tab")) {
+    }
   }
 
   //   const target = event.currentTarget;
@@ -653,6 +591,27 @@ function handleButtonMouseUp(event) {
   const display = document.querySelector(".display");
   if (!target.classList.contains("special")) {
     display.value += target.innerText;
+  } else {
+    if (target.id.includes("Arrow")) {
+      display.value += target.innerText;
+    }
+    if (target.id.includes("Backspace")) {
+      console.log("display.selectionEnd", display.selectionEnd);
+      const rangeEnd = display.selectionEnd;
+      display.value =
+        display.value.slice(1, display.selectionEnd) +
+        display.value.slice(display.selectionEnd + 1);
+      display.focus();
+      display.setSelectionRange(rangeEnd, rangeEnd);
+    }
+    if (target.id.includes("Delete")) {
+      const rangeEnd = display.selectionEnd;
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        display.value.slice(display.selectionEnd + 1);
+      display.focus();
+      display.setSelectionRange(rangeEnd, rangeEnd);
+    }
   }
   if (target.id !== "CapsLock") {
     target.classList.remove("clicked");
@@ -740,6 +699,7 @@ function handleButtonMouseUp(event) {
 // console.log(keyCodes.length, KEYBOARD_MAP.length);
 
 function handleKeyDown(event) {
+  console.log(event);
   //   codes.push(event.code);
   //   console.log(codes);
   //   console.log(event.keyCode);
@@ -748,10 +708,9 @@ function handleKeyDown(event) {
   //   event.stopPropagation();
   //   console.log(event);
   const buttons = document.querySelectorAll(".button");
-  //   console.log(buttons);
-
+  const display = document.querySelector(".display");
+  display.focus();
   for (let i = 0; i < buttons.length; i++) {
-    // console.log("data", buttons[i].dataset.keyCode, "event", event.keyCode);
     if (buttons[i].id === event.code) {
       buttons[i].classList.add("clicked");
       if (buttons[i].id === "CapsLock") {
@@ -766,6 +725,10 @@ function handleKeyDown(event) {
   }
   if (event.ctrlKey && event.key === "Alt") {
     setLang();
+  }
+  if (event.code.includes("Tab")) {
+    event.preventDefault();
+    display.value += "    ";
   }
   //   if (event.key === "Shift") {
   //     if (lang === "en") {
