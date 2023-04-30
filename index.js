@@ -548,6 +548,10 @@ function fillKeyboard() {
   if (capsLockPressed) {
     capsLockKey.classList.add("clicked");
   }
+  if (shiftPressed) {
+    whichShift = document.querySelector(`#${shiftPressed}`);
+    whichShift.classList.add("clicked");
+  }
   //   const shiftKey = document.querySelector(`#${shiftPressed}`);
   //   console.log("shift", shiftKey);
   //   shiftKey.classList.add("clicked");
@@ -646,6 +650,10 @@ function handleButtonMouseDown(event) {
 
 function handleButtonMouseUp(event) {
   const target = event.currentTarget;
+  const display = document.querySelector(".display");
+  if (!target.classList.contains("special")) {
+    display.value += target.innerText;
+  }
   if (target.id !== "CapsLock") {
     target.classList.remove("clicked");
     if (target.id.includes("Shift")) {
@@ -741,11 +749,20 @@ function handleKeyDown(event) {
   //   console.log(event);
   const buttons = document.querySelectorAll(".button");
   //   console.log(buttons);
+
   for (let i = 0; i < buttons.length; i++) {
     // console.log("data", buttons[i].dataset.keyCode, "event", event.keyCode);
     if (buttons[i].id === event.code) {
       buttons[i].classList.add("clicked");
+      if (buttons[i].id === "CapsLock") {
+        capsLockPressed = !capsLockPressed;
+        fillKeyboard();
+      }
     }
+  }
+  if (event.code.includes("Shift")) {
+    shiftPressed = event.code;
+    fillKeyboard();
   }
   if (event.ctrlKey && event.key === "Alt") {
     setLang();
@@ -769,8 +786,19 @@ function handleKeyDown(event) {
 function handleKeyUp(event) {
   const buttons = document.querySelectorAll(".button");
   for (let i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove("clicked");
+    if (buttons[i].id !== "CapsLock") {
+      buttons[i].classList.remove("clicked");
+    }
   }
+  if (event.code.includes("Shift")) {
+    if (shiftPressed) {
+      shiftPressed = false;
+    } else {
+      shiftPressed = event.code;
+    }
+    fillKeyboard();
+  }
+
   //   event.preventDefault();
   //   event.stopPropagation();
   //   if (lang === "en") {
@@ -786,12 +814,12 @@ function handleKeyUp(event) {
   //   }
 }
 
-function handleKeyPress(event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-}
+// function handleKeyPress(event) {
+//   //   event.preventDefault();
+//   //   event.stopPropagation();
+// }
 
 document.addEventListener("DOMContentLoaded", formDocument);
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
-document.addEventListener("keypress", handleKeyPress);
+// document.addEventListener("keypress", handleKeyPress);
