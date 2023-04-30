@@ -93,8 +93,14 @@ const KEYBOARD_MAP_2 = [
     by: "=",
     byShift: "+",
   },
-  { charcode: 8, desc: "backspace", eng: "Backspace", by: "Backspace" },
-  { charcode: 9, desc: "tab", eng: "Tab", by: "Tab" },
+  {
+    charcode: 8,
+    desc: "backspace",
+    eng: "Backspace",
+    by: "Backspace",
+    isSpecial: true,
+  },
+  { charcode: 9, desc: "tab", eng: "Tab", by: "Tab", isSpecial: true },
   { charcode: 81, desc: "q", eng: "q", by: "й" },
   { charcode: 87, desc: "w", eng: "w", by: "ц" },
   { charcode: 69, desc: "e", eng: "e", by: "у" },
@@ -118,17 +124,24 @@ const KEYBOARD_MAP_2 = [
     eng: "]",
     engShift: "}",
     by: "'",
+    byShift: '"',
   },
   {
     charcode: 220,
     desc: "solidus",
-    eng: "&#47;",
+    eng: "&#92;",
     engShift: "|",
-    by: "&#47;",
+    by: "&#92;",
     byShift: "/",
   },
-  { charcode: 46, desc: "del", eng: "Del", by: "Del" },
-  { charcode: 20, desc: "capslock", eng: "CapsLock", by: "CapsLock" },
+  { charcode: 46, desc: "del", eng: "Del", by: "Del", isSpecial: true },
+  {
+    charcode: 20,
+    desc: "capslock",
+    eng: "CapsLock",
+    by: "CapsLock",
+    isSpecial: true,
+  },
   { charcode: 65, desc: "a", eng: "a", by: "ф" },
   { charcode: 83, desc: "s", eng: "s", by: "ы" },
   { charcode: 68, desc: "d", eng: "d", by: "в" },
@@ -140,8 +153,14 @@ const KEYBOARD_MAP_2 = [
   { charcode: 76, desc: "l", eng: "l", by: "д" },
   { charcode: 186, desc: "semicolon", eng: ";", engShift: ":", by: "ж" },
   { charcode: 222, desc: "quotes", eng: "'", engShift: '"', by: "э" },
-  { charcode: 13, desc: "enter", eng: "Enter", by: "Enter" },
-  { charcode: 16, desc: "shift-left", eng: "Shift", by: "Shift" },
+  { charcode: 13, desc: "enter", eng: "Enter", by: "Enter", isSpecial: true },
+  {
+    charcode: 16,
+    desc: "shift-left",
+    eng: "Shift",
+    by: "Shift",
+    isSpecial: true,
+  },
   { charcode: 90, desc: "z", eng: "z", by: "я" },
   { charcode: 88, desc: "x", eng: "x", by: "ч" },
   { charcode: 67, desc: "c", eng: "c", by: "с" },
@@ -156,20 +175,62 @@ const KEYBOARD_MAP_2 = [
     eng: ".",
     engShift: ">",
     by: "ю",
+  },
+  {
+    charcode: 191,
+    desc: "slash",
+    eng: "/",
+    engShift: "?",
+    by: ".",
     byShift: ",",
   },
-  { charcode: 191, desc: "slash", eng: "/", engShift: "?", by: "." },
-  { charcode: 38, desc: "arrow-up", eng: "&uarr;", by: "&uarr;" },
-  { charcode: 16, desc: "shift-right", eng: "Shift", by: "Shift" },
-  { charcode: 17, desc: "ctrl-left", eng: "Ctrl", by: "Ctrl" },
-  { charcode: 91, desc: "win", eng: "Win", by: "Win" },
-  { charcode: 18, desc: "alt-left", eng: "Alt", by: "Alt" },
-  { charcode: 32, desc: "space", eng: " ", by: " " },
-  { charcode: 18, desc: "alt-right", eng: "Alt", by: "Alt" },
-  { charcode: 37, desc: "arrow-left", eng: "&larr;", by: "&larr;" },
-  { charcode: 40, desc: "arrow-down", eng: "&darr;", by: "&darr;" },
-  { charcode: 39, desc: "arrow-right", eng: "&rarr;", by: "&rarr;" },
-  { charcode: 17, desc: "ctrl-right", eng: "Ctrl", by: "Ctrl" },
+  {
+    charcode: 38,
+    desc: "arrow-up",
+    eng: "&uarr;",
+    by: "&uarr;",
+    isSpecial: true,
+  },
+  {
+    charcode: 16,
+    desc: "shift-right",
+    eng: "Shift",
+    by: "Shift",
+    isSpecial: true,
+  },
+  { charcode: 17, desc: "ctrl-left", eng: "Ctrl", by: "Ctrl", isSpecial: true },
+  { charcode: 91, desc: "win", eng: "Win", by: "Win", isSpecial: true },
+  { charcode: 18, desc: "alt-left", eng: "Alt", by: "Alt", isSpecial: true },
+  { charcode: 32, desc: "space", eng: " ", by: " ", isSpecial: true },
+  { charcode: 18, desc: "alt-right", eng: "Alt", by: "Alt", isSpecial: true },
+  {
+    charcode: 37,
+    desc: "arrow-left",
+    eng: "&larr;",
+    by: "&larr;",
+    isSpecial: true,
+  },
+  {
+    charcode: 40,
+    desc: "arrow-down",
+    eng: "&darr;",
+    by: "&darr;",
+    isSpecial: true,
+  },
+  {
+    charcode: 39,
+    desc: "arrow-right",
+    eng: "&rarr;",
+    by: "&rarr;",
+    isSpecial: true,
+  },
+  {
+    charcode: 17,
+    desc: "ctrl-right",
+    eng: "Ctrl",
+    by: "Ctrl",
+    isSpecial: true,
+  },
 ];
 
 let lang = localStorage.lang ? localStorage.lang : "en";
@@ -236,7 +297,14 @@ function formDocument() {
 }
 
 function fillKeyboard() {
-  //   console.log("filling", register);
+  console.log(
+    "filling",
+    lang,
+    "capsLockPressed",
+    capsLockPressed,
+    "shiftPressed",
+    shiftPressed
+  );
   const keyboardWrapper = document.querySelector(".keyboard-wrapper");
   keyboardWrapper.innerHTML = null;
   for (let i = 0; i < KEYBOARD_MAP_2.length; i++) {
@@ -277,15 +345,64 @@ function fillKeyboard() {
     // }
     const button = document.createElement("div");
     button.classList.add("button");
+    if (KEYBOARD_MAP_2[i].isSpecial) {
+      button.classList.add("special");
+    }
     button.id = KEYBOARD_MAP_2[i].desc;
     button.addEventListener("mousedown", handleButtonMouseDown);
     button.addEventListener("mouseup", handleButtonMouseUp);
 
-    if (lang === "en")
-      button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`;
-    else button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`;
+    if (lang === "en") {
+      if (capsLockPressed) {
+        button.classList.contains("special")
+          ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`)
+          : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+              i
+            ].eng.toUpperCase()}</span>`);
+      } else {
+        button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`;
+      }
+      if (shiftPressed) {
+        if (KEYBOARD_MAP_2[i].engShift) {
+          button.innerHTML = `<span>${KEYBOARD_MAP_2[i].engShift}</span>`;
+        } else {
+          button.classList.contains("special")
+            ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].eng}</span>`)
+            : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+                i
+              ].eng.toUpperCase()}</span>`);
+        }
+      }
+    } else {
+      if (capsLockPressed) {
+        button.classList.contains("special")
+          ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`)
+          : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+              i
+            ].by.toUpperCase()}</span>`);
+      } else {
+        button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`;
+      }
+      if (shiftPressed) {
+        if (KEYBOARD_MAP_2[i].byShift) {
+          button.innerHTML = `<span>${KEYBOARD_MAP_2[i].byShift}</span>`;
+        } else {
+          button.classList.contains("special")
+            ? (button.innerHTML = `<span>${KEYBOARD_MAP_2[i].by}</span>`)
+            : (button.innerHTML = `<span>${KEYBOARD_MAP_2[
+                i
+              ].by.toUpperCase()}</span>`);
+        }
+      }
+    }
 
     keyboardWrapper.appendChild(button);
+  }
+
+  const capsLockKey = document.querySelector("#capslock");
+  //   console.log("capsLockKey", capsLockKey);
+  if (capsLockPressed) {
+    capsLockKey.classList.add("clicked");
   }
 }
 
@@ -303,19 +420,24 @@ function fillDescription() {
 function setLang() {
   const langMarker = document.querySelector(".lang-marker");
   langMarker.classList.toggle("en");
-  fillKeyboard();
-  fillDescription();
-  const capsLockKey = document.querySelector("#capslock");
-  isUpperRegister = false;
-  capsLockKey.classList.remove("clicked");
   if (lang === "en") {
     lang = "by";
     localStorage.setItem("lang", lang);
+    fillKeyboard();
+    fillDescription();
     langMarker.innerText = lang.toUpperCase();
+    const capsLockKey = document.querySelector("#capslock");
+    capsLockPressed = false;
+    capsLockKey.classList.remove("clicked");
   } else {
     lang = "en";
     localStorage.setItem("lang", lang);
+    fillKeyboard();
+    fillDescription();
     langMarker.innerText = lang.toUpperCase();
+    const capsLockKey = document.querySelector("#capslock");
+    capsLockPressed = false;
+    capsLockKey.classList.remove("clicked");
   }
 }
 
@@ -336,8 +458,22 @@ function handleButtonClick(event) {
 
 function handleButtonMouseDown(event) {
   if (event.currentTarget.classList.contains("button")) {
-    event.currentTarget.classList.add("clicked");
+    event.currentTarget.classList.toggle("clicked");
+    // const whichShift = event.currentTarget.id;
+    // console.log(whichShift);
+    if (event.target.id.includes("shift")) {
+      shiftPressed = true;
+      fillKeyboard();
+      //   const shiftKey = document.querySelector(`.${whichShift}`);
+      //   console.log("shiftKey", shiftKey);
+      //   shiftKey.classList.add("clicked");
+    }
+    if (event.target.id.includes("capslock")) {
+      capsLockPressed = !capsLockPressed;
+      fillKeyboard();
+    }
   }
+
   //   const target = event.currentTarget;
   //   target.classList.add("clicked");
   //   //   toggleRegister();
@@ -360,7 +496,16 @@ function handleButtonMouseDown(event) {
 }
 
 function handleButtonMouseUp(event) {
-  event.currentTarget.classList.remove("clicked");
+  const target = event.currentTarget;
+  if (target.id !== "capslock") {
+    target.classList.remove("clicked");
+    if (target.id.includes("shift")) {
+      shiftPressed = false;
+      fillKeyboard();
+    }
+  } else {
+    console.log("capslock", capsLockPressed);
+  }
   //   const target = event.currentTarget;
   //   //   toggleRegister();
   //   if (lang === "en") {
@@ -382,38 +527,38 @@ function handleButtonMouseUp(event) {
 }
 
 function handleCapsLock() {
-  const buttons = document.querySelectorAll(".button");
-  // console.log(buttons);
-  for (let i = 0; i < buttons.length; i++) {
-    const text = buttons[i].querySelector("span");
-    //   console.log("text", text);
-    if (isUpperRegister) {
-      if (text) {
-        lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
-      }
-    } else {
-      if (text) {
-        if (
-          text.innerText.includes("Alt") ||
-          text.innerText.includes("Ctrl") ||
-          text.innerText.includes("Shift") ||
-          text.innerText.includes("Tab") ||
-          text.innerText.includes("Del") ||
-          text.innerText.includes("CapsLock") ||
-          text.innerText.includes("Win") ||
-          text.innerText.includes("Enter") ||
-          text.innerText.includes("Backspace")
-        ) {
-          continue;
-        } else {
-          text.innerText = text.innerText.toUpperCase();
-        }
-      }
-    }
-  }
-  const capsLockKey = document.querySelector(".capslock");
-  capsLockKey.classList.toggle("clicked");
-  toggleRegister();
+  //   const buttons = document.querySelectorAll(".button");
+  //   // console.log(buttons);
+  //   for (let i = 0; i < buttons.length; i++) {
+  //     const text = buttons[i].querySelector("span");
+  //     //   console.log("text", text);
+  //     if (isUpperRegister) {
+  //       if (text) {
+  //         lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
+  //       }
+  //     } else {
+  //       if (text) {
+  //         if (
+  //           text.innerText.includes("Alt") ||
+  //           text.innerText.includes("Ctrl") ||
+  //           text.innerText.includes("Shift") ||
+  //           text.innerText.includes("Tab") ||
+  //           text.innerText.includes("Del") ||
+  //           text.innerText.includes("CapsLock") ||
+  //           text.innerText.includes("Win") ||
+  //           text.innerText.includes("Enter") ||
+  //           text.innerText.includes("Backspace")
+  //         ) {
+  //           continue;
+  //         } else {
+  //           text.innerText = text.innerText.toUpperCase();
+  //         }
+  //       }
+  //     }
+  //   }
+  //   const capsLockKey = document.querySelector(".capslock");
+  //   capsLockKey.classList.toggle("clicked");
+  //   toggleRegister();
 }
 
 // function handleShift(event) {
