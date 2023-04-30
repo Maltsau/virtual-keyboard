@@ -594,6 +594,19 @@ function handleButtonMouseUp(event) {
   } else {
     if (target.id.includes("Arrow")) {
       display.value += target.innerText;
+      display.focus();
+    }
+    if (target.id.includes("Space")) {
+      display.value += " ";
+      display.focus();
+    }
+    if (target.id.includes("Enter")) {
+      display.value += "\n";
+      display.focus();
+    }
+    if (target.id.includes("Tab")) {
+      display.value += "    ";
+      display.focus();
     }
     if (target.id.includes("Backspace")) {
       console.log("display.selectionEnd", display.selectionEnd);
