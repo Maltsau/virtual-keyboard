@@ -383,7 +383,7 @@ function fillKeyboard() {
   );
   const keyboardWrapper = document.querySelector(".keyboard-wrapper");
   keyboardWrapper.innerHTML = null;
-  const enterPress = new KeyboardEvent("keyup", { key: "Enter", char: 13 });
+  //   const enterPress = new KeyboardEvent("keyup", { key: "Enter", char: 13 });
   for (let i = 0; i < KEYBOARD_MAP.length; i++) {
     // const button = document.createElement("div");
     // button.classList.add("button");
@@ -429,12 +429,12 @@ function fillKeyboard() {
     // button.dataset.keyCode = KEYBOARD_MAP_2[i].charcode;
     button.addEventListener("mousedown", handleButtonMouseDown);
     button.addEventListener("mouseup", handleButtonMouseUp);
-    if (button.id.includes("Enter")) {
-      //   console.log("added on enter", enterPress);
-      button.addEventListener("click", () => {
-        document.dispatchEvent(enterPress);
-      });
-    }
+    // if (button.id.includes("Enter")) {
+    //   //   console.log("added on enter", enterPress);
+    //   button.addEventListener("click", () => {
+    //     document.dispatchEvent(enterPress);
+    //   });
+    // }
 
     if (lang === "en") {
       if (capsLockPressed) {
@@ -611,11 +611,18 @@ function handleButtonMouseUp(event) {
     if (target.id.includes("Backspace")) {
       console.log("display.selectionEnd", display.selectionEnd);
       const rangeEnd = display.selectionEnd;
+      console.log(
+        "first",
+        display.value.slice(0, display.selectionEnd - 1),
+        "second",
+        display.value.slice(display.selectionEnd + 1)
+      );
+
       display.value =
-        display.value.slice(1, display.selectionEnd) +
-        display.value.slice(display.selectionEnd + 1);
+        display.value.slice(0, display.selectionEnd - 1) +
+        display.value.slice(display.selectionEnd);
       display.focus();
-      display.setSelectionRange(rangeEnd, rangeEnd);
+      display.setSelectionRange(rangeEnd - 1, rangeEnd - 1);
     }
     if (target.id.includes("Delete")) {
       const rangeEnd = display.selectionEnd;
@@ -743,6 +750,7 @@ function handleKeyDown(event) {
     event.preventDefault();
     display.value += "    ";
   }
+  //   if ()
   //   if (event.key === "Shift") {
   //     if (lang === "en") {
   //       fillKeyboard(1);
