@@ -1,7 +1,6 @@
 const KEYBOARD_MAP = [
-  { charcode: 192, desc: "Backquote", eng: "`", engShift: "~", by: "ё" },
+  { desc: "Backquote", eng: "`", engShift: "~", by: "ё" },
   {
-    charcode: 49,
     desc: "Digit1",
     eng: "1",
     engShift: "!",
@@ -9,7 +8,6 @@ const KEYBOARD_MAP = [
     byShift: "!",
   },
   {
-    charcode: 50,
     desc: "Digit2",
     eng: "2",
     engShift: "@",
@@ -17,7 +15,6 @@ const KEYBOARD_MAP = [
     byShift: '"',
   },
   {
-    charcode: 51,
     desc: "Digit3",
     eng: "3",
     engShift: "#",
@@ -25,7 +22,6 @@ const KEYBOARD_MAP = [
     byShift: "№",
   },
   {
-    charcode: 52,
     desc: "Digit4",
     eng: "4",
     engShift: "$",
@@ -33,7 +29,6 @@ const KEYBOARD_MAP = [
     byShift: ";",
   },
   {
-    charcode: 53,
     desc: "Digit5",
     eng: "5",
     engShift: "%",
@@ -41,7 +36,6 @@ const KEYBOARD_MAP = [
     byShift: "%",
   },
   {
-    charcode: 54,
     desc: "Digit6",
     eng: "6",
     engShift: "^",
@@ -49,7 +43,6 @@ const KEYBOARD_MAP = [
     byShift: ":",
   },
   {
-    charcode: 55,
     desc: "Digit7",
     eng: "7",
     engShift: "&",
@@ -57,7 +50,6 @@ const KEYBOARD_MAP = [
     byShift: "?",
   },
   {
-    charcode: 56,
     desc: "Digit8",
     eng: "8",
     engShift: "*",
@@ -65,7 +57,6 @@ const KEYBOARD_MAP = [
     byShift: "*",
   },
   {
-    charcode: 57,
     desc: "Digit9",
     eng: "9",
     engShift: "(",
@@ -73,7 +64,6 @@ const KEYBOARD_MAP = [
     byShift: "(",
   },
   {
-    charcode: 48,
     desc: "Digit0",
     eng: "0",
     engShift: ")",
@@ -81,7 +71,6 @@ const KEYBOARD_MAP = [
     byShift: ")",
   },
   {
-    charcode: 189,
     desc: "Minus",
     eng: "-",
     engShift: "_",
@@ -89,7 +78,6 @@ const KEYBOARD_MAP = [
     byShift: "_",
   },
   {
-    charcode: 187,
     desc: "Equal",
     eng: "=",
     engShift: "+",
@@ -97,32 +85,29 @@ const KEYBOARD_MAP = [
     byShift: "+",
   },
   {
-    charcode: 8,
     desc: "Backspace",
     eng: "Backspace",
     by: "Backspace",
     isSpecial: true,
   },
-  { charcode: 9, desc: "Tab", eng: "Tab", by: "Tab", isSpecial: true },
-  { charcode: 81, desc: "KeyQ", eng: "q", by: "й" },
-  { charcode: 87, desc: "KeyW", eng: "w", by: "ц" },
-  { charcode: 69, desc: "KeyE", eng: "e", by: "у" },
-  { charcode: 82, desc: "KeyR", eng: "r", by: "к" },
-  { charcode: 84, desc: "KeyT", eng: "t", by: "е" },
-  { charcode: 89, desc: "KeyY", eng: "y", by: "н" },
-  { charcode: 85, desc: "KeyU", eng: "u", by: "г" },
-  { charcode: 73, desc: "KeyI", eng: "i", by: "ш" },
-  { charcode: 79, desc: "KeyO", eng: "o", by: "ў" },
-  { charcode: 80, desc: "KeyP", eng: "p", by: "з" },
+  { desc: "Tab", eng: "Tab", by: "Tab", isSpecial: true },
+  { desc: "KeyQ", eng: "q", by: "й" },
+  { desc: "KeyW", eng: "w", by: "ц" },
+  { desc: "KeyE", eng: "e", by: "у" },
+  { desc: "KeyR", eng: "r", by: "к" },
+  { desc: "KeyT", eng: "t", by: "е" },
+  { desc: "KeyY", eng: "y", by: "н" },
+  { desc: "KeyU", eng: "u", by: "г" },
+  { desc: "KeyI", eng: "i", by: "ш" },
+  { desc: "KeyO", eng: "o", by: "ў" },
+  { desc: "KeyP", eng: "p", by: "з" },
   {
-    charcode: 219,
     desc: "BracketLeft",
     eng: "[",
     engShift: "{",
     by: "х",
   },
   {
-    charcode: 221,
     desc: "BracketRight",
     eng: "]",
     engShift: "}",
@@ -130,57 +115,52 @@ const KEYBOARD_MAP = [
     byShift: '"',
   },
   {
-    charcode: 220,
     desc: "Backslash",
     eng: "&#92;",
     engShift: "|",
     by: "&#92;",
     byShift: "/",
   },
-  { charcode: 46, desc: "Delete", eng: "Del", by: "Del", isSpecial: true },
+  { desc: "Delete", eng: "Del", by: "Del", isSpecial: true },
   {
-    charcode: 20,
     desc: "CapsLock",
     eng: "CapsLock",
     by: "CapsLock",
     isSpecial: true,
   },
-  { charcode: 65, desc: "KeyA", eng: "a", by: "ф" },
-  { charcode: 83, desc: "KeyS", eng: "s", by: "ы" },
-  { charcode: 68, desc: "KeyD", eng: "d", by: "в" },
-  { charcode: 70, desc: "KeyF", eng: "f", by: "а" },
-  { charcode: 71, desc: "KeyG", eng: "g", by: "п" },
-  { charcode: 72, desc: "KeyH", eng: "h", by: "р" },
-  { charcode: 74, desc: "KeyJ", eng: "j", by: "о" },
-  { charcode: 75, desc: "KeyK", eng: "k", by: "л" },
-  { charcode: 76, desc: "KeyL", eng: "l", by: "д" },
-  { charcode: 186, desc: "Semicolon", eng: ";", engShift: ":", by: "ж" },
-  { charcode: 222, desc: "Quote", eng: "'", engShift: '"', by: "э" },
-  { charcode: 13, desc: "Enter", eng: "Enter", by: "Enter", isSpecial: true },
+  { desc: "KeyA", eng: "a", by: "ф" },
+  { desc: "KeyS", eng: "s", by: "ы" },
+  { desc: "KeyD", eng: "d", by: "в" },
+  { desc: "KeyF", eng: "f", by: "а" },
+  { desc: "KeyG", eng: "g", by: "п" },
+  { desc: "KeyH", eng: "h", by: "р" },
+  { desc: "KeyJ", eng: "j", by: "о" },
+  { desc: "KeyK", eng: "k", by: "л" },
+  { desc: "KeyL", eng: "l", by: "д" },
+  { desc: "Semicolon", eng: ";", engShift: ":", by: "ж" },
+  { desc: "Quote", eng: "'", engShift: '"', by: "э" },
+  { desc: "Enter", eng: "Enter", by: "Enter", isSpecial: true },
   {
-    charcode: 16,
     desc: "ShiftLeft",
     eng: "Shift",
     by: "Shift",
     isSpecial: true,
   },
-  { charcode: 90, desc: "KeyZ", eng: "z", by: "я" },
-  { charcode: 88, desc: "KeyX", eng: "x", by: "ч" },
-  { charcode: 67, desc: "KeyC", eng: "c", by: "с" },
-  { charcode: 86, desc: "KeyV", eng: "v", by: "м" },
-  { charcode: 66, desc: "KeyB", eng: "b", by: "і" },
-  { charcode: 78, desc: "KeyN", eng: "n", by: "т" },
-  { charcode: 77, desc: "KeyM", eng: "m", by: "ь" },
-  { charcode: 188, desc: "Comma", eng: ",", engShift: "<", by: "б" },
+  { desc: "KeyZ", eng: "z", by: "я" },
+  { desc: "KeyX", eng: "x", by: "ч" },
+  { desc: "KeyC", eng: "c", by: "с" },
+  { desc: "KeyV", eng: "v", by: "м" },
+  { desc: "KeyB", eng: "b", by: "і" },
+  { desc: "KeyN", eng: "n", by: "т" },
+  { desc: "KeyM", eng: "m", by: "ь" },
+  { desc: "Comma", eng: ",", engShift: "<", by: "б" },
   {
-    charcode: 190,
     desc: "Period",
     eng: ".",
     engShift: ">",
     by: "ю",
   },
   {
-    charcode: 191,
     desc: "Slash",
     eng: "/",
     engShift: "?",
@@ -188,53 +168,46 @@ const KEYBOARD_MAP = [
     byShift: ",",
   },
   {
-    charcode: 38,
     desc: "ArrowUp",
     eng: "&uarr;",
     by: "&uarr;",
     isSpecial: true,
   },
   {
-    charcode: 16,
     desc: "ShiftRight",
     eng: "Shift",
     by: "Shift",
     isSpecial: true,
   },
   {
-    charcode: 17,
     desc: "ControlLeft",
     eng: "Ctrl",
     by: "Ctrl",
     isSpecial: true,
   },
-  { charcode: 91, desc: "Win", eng: "Win", by: "Win", isSpecial: true },
-  { charcode: 18, desc: "AltLeft", eng: "Alt", by: "Alt", isSpecial: true },
-  { charcode: 32, desc: "Space", eng: " ", by: " ", isSpecial: true },
-  { charcode: 18, desc: "AltRight", eng: "Alt", by: "Alt", isSpecial: true },
+  { desc: "Win", eng: "Win", by: "Win", isSpecial: true },
+  { desc: "AltLeft", eng: "Alt", by: "Alt", isSpecial: true },
+  { desc: "Space", eng: " ", by: " ", isSpecial: true },
+  { desc: "AltRight", eng: "Alt", by: "Alt", isSpecial: true },
   {
-    charcode: 37,
     desc: "ArrowLeft",
     eng: "&larr;",
     by: "&larr;",
     isSpecial: true,
   },
   {
-    charcode: 40,
     desc: "ArrowDown",
     eng: "&darr;",
     by: "&darr;",
     isSpecial: true,
   },
   {
-    charcode: 39,
     desc: "ArrowRight",
     eng: "&rarr;",
     by: "&rarr;",
     isSpecial: true,
   },
   {
-    charcode: 17,
     desc: "ControlRight",
     eng: "Ctrl",
     by: "Ctrl",
@@ -267,7 +240,6 @@ function formDocument() {
   if (lang === "en") {
     display.classList.add("en");
   }
-  display.focus();
 
   const keyboardWrapper = document.createElement("div");
   keyboardWrapper.classList.add("keyboard-wrapper");
@@ -473,10 +445,8 @@ function handleButtonMouseUp(event) {
 
 function handleKeyDown(event) {
   const buttons = document.querySelectorAll(".button");
-  const display = document.querySelector(".display");
   const eventCode = event.code;
   const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
-  display.focus();
   if (keyboardMapItem) {
     if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
       event.preventDefault();
