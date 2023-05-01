@@ -285,13 +285,6 @@ function formDocument() {
 }
 
 function fillKeyboard() {
-  console.log(
-    "filling",
-    "capsLockPressed",
-    capsLockPressed,
-    "shiftPressed",
-    shiftPressed
-  );
   const keyboardWrapper = document.querySelector(".keyboard-wrapper");
   keyboardWrapper.innerHTML = null;
   for (let i = 0; i < KEYBOARD_MAP.length; i++) {
@@ -398,9 +391,7 @@ function handleButtonMouseDown(event) {
     if (event.currentTarget.id.includes("Shift")) {
       shiftPressed = event.currentTarget.id;
       fillKeyboard();
-      console.log("which shift", shiftPressed);
       const shiftKey = document.querySelector(`#${shiftPressed}`);
-      console.log("shiftKey", shiftKey);
       shiftKey.classList.add("clicked");
     }
     if (event.currentTarget.id.includes("CapsLock")) {
@@ -477,8 +468,6 @@ function handleButtonMouseUp(event) {
       shiftPressed = false;
       fillKeyboard();
     }
-  } else {
-    console.log("capslock", capsLockPressed);
   }
 }
 
@@ -488,27 +477,29 @@ function handleKeyDown(event) {
   const eventCode = event.code;
   const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
   display.focus();
-  if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
-    event.preventDefault();
-  }
-  for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].id === eventCode) {
-      buttons[i].classList.add("clicked");
-      if (buttons[i].id === "CapsLock") {
-        capsLockPressed = !capsLockPressed;
-        fillKeyboard();
+  if (keyboardMapItem) {
+    if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
+      event.preventDefault();
+    }
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].id === eventCode) {
+        buttons[i].classList.add("clicked");
+        if (buttons[i].id === "CapsLock") {
+          capsLockPressed = !capsLockPressed;
+          fillKeyboard();
+        }
       }
     }
-  }
-  if (eventCode.includes("Shift")) {
-    shiftPressed = eventCode;
-    fillKeyboard();
-  }
-  if (
-    (event.ctrlKey && event.key === "Alt") ||
-    (event.altKey && event.key === "Control")
-  ) {
-    setLang();
+    if (eventCode.includes("Shift")) {
+      shiftPressed = eventCode;
+      fillKeyboard();
+    }
+    if (
+      (event.ctrlKey && event.key === "Alt") ||
+      (event.altKey && event.key === "Control")
+    ) {
+      setLang();
+    }
   }
 }
 
@@ -519,45 +510,46 @@ function handleKeyUp(event) {
   const eventCode = event.code;
   const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
   let buttonText = null;
-
-  for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].id === eventCode) {
-      buttonText = buttons[i].innerText;
-    }
-  }
-  for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].id !== "CapsLock") {
-      if (buttons[i].id === event.code) {
-        buttons[i].classList.remove("clicked");
+  if (keyboardMapItem) {
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].id === eventCode) {
+        buttonText = buttons[i].innerText;
       }
     }
-  }
-  if (event.code.includes("Shift")) {
-    if (shiftPressed) {
-      shiftPressed = false;
-    } else {
-      shiftPressed = event.code;
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i].id !== "CapsLock") {
+        if (buttons[i].id === event.code) {
+          buttons[i].classList.remove("clicked");
+        }
+      }
     }
-    fillKeyboard();
-  }
+    if (event.code.includes("Shift")) {
+      if (shiftPressed) {
+        shiftPressed = false;
+      } else {
+        shiftPressed = event.code;
+      }
+      fillKeyboard();
+    }
 
-  if (eventCode.includes("Tab")) {
-    event.preventDefault();
-    display.value =
-      display.value.slice(0, display.selectionEnd) +
-      "    " +
-      display.value.slice(display.selectionEnd);
-    display.focus();
-    display.setSelectionRange(rangeEnd + 4, rangeEnd + 4);
-  }
-  if (!keyboardMapItem.isSpecial) {
-    event.preventDefault();
-    display.value =
-      display.value.slice(0, display.selectionEnd) +
-      buttonText +
-      display.value.slice(display.selectionEnd);
-    display.focus();
-    display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
+    if (eventCode.includes("Tab")) {
+      event.preventDefault();
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        "    " +
+        display.value.slice(display.selectionEnd);
+      display.focus();
+      display.setSelectionRange(rangeEnd + 4, rangeEnd + 4);
+    }
+    if (!keyboardMapItem.isSpecial) {
+      event.preventDefault();
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        buttonText +
+        display.value.slice(display.selectionEnd);
+      display.focus();
+      display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
+    }
   }
 }
 
