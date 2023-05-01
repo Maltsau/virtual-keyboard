@@ -326,20 +326,23 @@ function formDocument() {
   heading.innerText = `Virtual Keyboard`;
   wrapper.appendChild(heading);
 
-  const langMarker = document.createElement("div");
-  langMarker.classList.add("lang-marker");
-  wrapper.appendChild(langMarker);
-  langMarker.innerText = lang.toUpperCase();
-  if (lang === "en") {
-    langMarker.classList.add("en");
-  }
-  langMarker.addEventListener("click", setLang);
+  //   const langMarker = document.createElement("div");
+  //   langMarker.classList.add("lang-marker");
+  //   wrapper.appendChild(langMarker);
+  //   langMarker.innerText = lang.toUpperCase();
+  //   if (lang === "en") {
+  //     langMarker.classList.add("en");
+  //   }
+  //   langMarker.addEventListener("click", setLang);
 
   const display = document.createElement("textarea");
   display.rows = 10;
   display.cols = 50;
   display.classList.add("display");
   wrapper.appendChild(display);
+  if (lang === "en") {
+    display.classList.add("en");
+  }
   display.focus();
 
   const keyboardWrapper = document.createElement("div");
@@ -451,14 +454,16 @@ function fillDescription() {
 function setLang() {
   console.log("lang change");
   const langMarker = document.querySelector(".lang-marker");
-  langMarker.classList.toggle("en");
+  const display = document.querySelector(".display");
+  display.classList.toggle("en");
+  //   langMarker.classList.toggle("en");
   if (lang === "en") {
     lang = "by";
     localStorage.setItem("lang", lang);
     capsLockPressed = false;
     fillKeyboard();
     fillDescription();
-    langMarker.innerText = lang.toUpperCase();
+    // langMarker.innerText = lang.toUpperCase();
     const capsLockKey = document.querySelector("#CapsLock");
     capsLockKey.classList.remove("clicked");
   } else {
@@ -467,7 +472,7 @@ function setLang() {
     capsLockPressed = false;
     fillKeyboard();
     fillDescription();
-    langMarker.innerText = lang.toUpperCase();
+    // langMarker.innerText = lang.toUpperCase();
     const capsLockKey = document.querySelector("#CapsLock");
     capsLockKey.classList.remove("clicked");
   }
@@ -581,12 +586,16 @@ function handleButtonMouseUp(event) {
 }
 
 function handleKeyDown(event) {
-  //   console.log(event);
+  console.log(event);
   const buttons = document.querySelectorAll(".button");
   const display = document.querySelector(".display");
-  display.focus();
-  //   const rangeEnd = display.selectionEnd;
   const eventCode = event.code;
+  const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
+  display.focus();
+  if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
+    event.preventDefault();
+  }
+  //   const rangeEnd = display.selectionEnd;
   //   const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
   let buttonText = null;
   for (let i = 0; i < buttons.length; i++) {
@@ -612,7 +621,10 @@ function handleKeyDown(event) {
     shiftPressed = eventCode;
     fillKeyboard();
   }
-  if (event.ctrlKey && event.key === "Alt") {
+  if (
+    (event.ctrlKey && event.key === "Alt") ||
+    (event.altKey && event.key === "Control")
+  ) {
     setLang();
   }
 }
