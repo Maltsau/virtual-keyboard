@@ -314,21 +314,6 @@ let shiftPressed = false;
 let capsLockPressed = false;
 
 function formDocument() {
-  //   let isEng = 0;
-  //   if (lang === "by") {
-  //     isEng = 2;
-  //   }
-
-  //   const head = document.createElement("head");
-  //   head.innerHTML = `
-  //     <meta charset="UTF-8">
-  //     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  //     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  //     <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
-  //     <title>Virtual Keyboard</title>
-  //     `;
-  //   document.documentElement.appendChild(head);
-
   const body = document.createElement("body");
   document.documentElement.appendChild(body);
 
@@ -385,41 +370,6 @@ function fillKeyboard() {
   keyboardWrapper.innerHTML = null;
   //   const enterPress = new KeyboardEvent("keyup", { key: "Enter", char: 13 });
   for (let i = 0; i < KEYBOARD_MAP.length; i++) {
-    // const button = document.createElement("div");
-    // button.classList.add("button");
-    // button.id = KEYBOARD_MAP[i][register];
-    // button.addEventListener("click", handleButtonClick);
-    // // console.log(KEYBOARD_MAP[i][register]);
-    // if (KEYBOARD_MAP[i][register] !== "CapsLock") {
-    //   //   console.log(KEYBOARD_MAP[i][register]);
-    //   button.addEventListener("mousedown", handleButtonMouseDown);
-    // }
-    // if (KEYBOARD_MAP[i][register].includes("Shift")) {
-    //   button.addEventListener("mouseup", handleButtonMouseUp);
-    // }
-    // button.classList.add(KEYBOARD_MAP[i][register].toLocaleLowerCase());
-    // if (KEYBOARD_MAP[i][register].includes("CapsLock") && isUpperRegister) {
-    //   button.classList.add("clicked");
-    // }
-    // if (KEYBOARD_MAP[i][register].includes("Ctrl")) {
-    //   button.innerHTML = `<span>Ctrl</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Shift")) {
-    //   button.innerHTML = `<span>Shift</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Solidus")) {
-    //   button.innerHTML = `<span>&#47;</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Space")) {
-    //   button.innerText = null;
-    // } else if (KEYBOARD_MAP[i][register].includes("Up")) {
-    //   button.innerHTML = `<span>&uarr;</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Left")) {
-    //   button.innerHTML = `<span>&larr;</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Down")) {
-    //   button.innerHTML = `<span>&darr;</span>`;
-    // } else if (KEYBOARD_MAP[i][register].includes("Right")) {
-    //   button.innerHTML = `<span>&rarr;</span>`;
-    // } else {
-    //   button.innerHTML = `<span>${KEYBOARD_MAP[i][register]}</span>`;
-    // }
     const button = document.createElement("div");
     button.classList.add("button");
     if (KEYBOARD_MAP[i].isSpecial) {
@@ -429,12 +379,6 @@ function fillKeyboard() {
     // button.dataset.keyCode = KEYBOARD_MAP_2[i].charcode;
     button.addEventListener("mousedown", handleButtonMouseDown);
     button.addEventListener("mouseup", handleButtonMouseUp);
-    // if (button.id.includes("Enter")) {
-    //   //   console.log("added on enter", enterPress);
-    //   button.addEventListener("click", () => {
-    //     document.dispatchEvent(enterPress);
-    //   });
-    // }
 
     if (lang === "en") {
       if (capsLockPressed) {
@@ -505,6 +449,7 @@ function fillDescription() {
 }
 
 function setLang() {
+  console.log("lang change");
   const langMarker = document.querySelector(".lang-marker");
   langMarker.classList.toggle("en");
   if (lang === "en") {
@@ -528,31 +473,13 @@ function setLang() {
   }
 }
 
-// function handleButtonClick(event) {
-//   //   const display = document.querySelector(".display");
-//   //   display.value += event.currentTarget.innerText;
-//   //   //   console.log("event.target.id", event.currentTarget.id);
-//   //   const target = event.currentTarget;
-//   //   if (target.id.contains("capslock")) {
-//   //     handleCapsLock();
-//   //   } else if (target.classList.contains("button")) {
-//   //     target.classList.add("clicked");
-//   //     setTimeout(() => {
-//   //       target.classList.remove("clicked");
-//   //     }, 200);
-//   //   }
-// }
-
 function handleButtonMouseDown(event) {
   if (event.currentTarget.classList.contains("button")) {
     event.currentTarget.classList.toggle("clicked");
-    // const whichShift = event.currentTarget.id;
-    // console.log(whichShift);
     if (event.currentTarget.id.includes("Shift")) {
       shiftPressed = event.currentTarget.id;
       fillKeyboard();
       console.log("which shift", shiftPressed);
-
       const shiftKey = document.querySelector(`#${shiftPressed}`);
       console.log("shiftKey", shiftKey);
       shiftKey.classList.add("clicked");
@@ -564,68 +491,77 @@ function handleButtonMouseDown(event) {
     if (event.currentTarget.id.includes("Tab")) {
     }
   }
-
-  //   const target = event.currentTarget;
-  //   target.classList.add("clicked");
-  //   //   toggleRegister();
-  //   if (target.innerText === "Shift") {
-  //     // console.log("isUpperRegister", isUpperRegister);
-  //     const shiftText = target.id;
-  //     if (lang === "en") {
-  //       fillKeyboard(1);
-  //       console.log("shift", target.id);
-  //       const shiftKey = document.querySelector(`#${target.id}`);
-  //       shiftKey.classList.add("clicked");
-  //     } else {
-  //       fillKeyboard(3);
-  //       console.log("shift", target);
-  //       const shiftKey = document.querySelector(`#${target.id}`);
-  //       shiftKey.classList.add("clicked");
-  //     }
-  //     // handleShift(event);
-  //   }
 }
 
 function handleButtonMouseUp(event) {
   const target = event.currentTarget;
   const display = document.querySelector(".display");
+  const rangeEnd = display.selectionEnd;
   if (!target.classList.contains("special")) {
-    display.value += target.innerText;
+    // console.log("rangeEnd", rangeEnd);
+    // console.log(
+    //   "first",
+    //   display.value.slice(0, display.selectionEnd),
+    //   "second",
+    //   display.value.slice(display.selectionEnd)
+    // );
+    display.value =
+      display.value.slice(0, display.selectionEnd) +
+      target.innerText +
+      display.value.slice(display.selectionEnd);
+    display.focus();
+    display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
   } else {
     if (target.id.includes("Arrow")) {
-      display.value += target.innerText;
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        target.innerText +
+        display.value.slice(display.selectionEnd);
       display.focus();
+      display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
     }
     if (target.id.includes("Space")) {
-      display.value += " ";
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        " " +
+        display.value.slice(display.selectionEnd);
       display.focus();
+      display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
     }
     if (target.id.includes("Enter")) {
-      display.value += "\n";
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        "\n" +
+        display.value.slice(display.selectionEnd);
       display.focus();
+      display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
     }
     if (target.id.includes("Tab")) {
-      display.value += "    ";
+      display.value =
+        display.value.slice(0, display.selectionEnd) +
+        "    " +
+        display.value.slice(display.selectionEnd);
       display.focus();
+      display.setSelectionRange(rangeEnd + 4, rangeEnd + 4);
     }
     if (target.id.includes("Backspace")) {
       console.log("display.selectionEnd", display.selectionEnd);
-      const rangeEnd = display.selectionEnd;
-      console.log(
-        "first",
-        display.value.slice(0, display.selectionEnd - 1),
-        "second",
-        display.value.slice(display.selectionEnd + 1)
-      );
 
-      display.value =
-        display.value.slice(0, display.selectionEnd - 1) +
-        display.value.slice(display.selectionEnd);
-      display.focus();
-      display.setSelectionRange(rangeEnd - 1, rangeEnd - 1);
+      //   console.log(
+      //     "first",
+      //     display.value.slice(0, display.selectionEnd - 1),
+      //     "second",
+      //     display.value.slice(display.selectionEnd + 1)
+      //   );
+      if (display.selectionEnd) {
+        display.value =
+          display.value.slice(0, display.selectionEnd - 1) +
+          display.value.slice(display.selectionEnd);
+        display.focus();
+        display.setSelectionRange(rangeEnd - 1, rangeEnd - 1);
+      }
     }
     if (target.id.includes("Delete")) {
-      const rangeEnd = display.selectionEnd;
       display.value =
         display.value.slice(0, display.selectionEnd) +
         display.value.slice(display.selectionEnd + 1);
@@ -642,96 +578,29 @@ function handleButtonMouseUp(event) {
   } else {
     console.log("capslock", capsLockPressed);
   }
-  //   const target = event.currentTarget;
-  //   //   toggleRegister();
-  //   if (lang === "en") {
-  //     console.log("mouseUp", target);
-  //     if (isUpperRegister) {
-  //       fillKeyboard(0);
-  //       handleCapsLock();
-  //     } else {
-  //       fillKeyboard(0);
-  //     }
-  //   } else {
-  //     if (isUpperRegister) {
-  //       fillKeyboard(2);
-  //       handleCapsLock();
-  //     } else {
-  //       fillKeyboard(2);
-  //     }
-  //   }
 }
 
-// function handleCapsLock() {
-//   //   const buttons = document.querySelectorAll(".button");
-//   //   // console.log(buttons);
-//   //   for (let i = 0; i < buttons.length; i++) {
-//   //     const text = buttons[i].querySelector("span");
-//   //     //   console.log("text", text);
-//   //     if (isUpperRegister) {
-//   //       if (text) {
-//   //         lang === "en" ? fillKeyboard(0) : fillKeyboard(2);
-//   //       }
-//   //     } else {
-//   //       if (text) {
-//   //         if (
-//   //           text.innerText.includes("Alt") ||
-//   //           text.innerText.includes("Ctrl") ||
-//   //           text.innerText.includes("Shift") ||
-//   //           text.innerText.includes("Tab") ||
-//   //           text.innerText.includes("Del") ||
-//   //           text.innerText.includes("CapsLock") ||
-//   //           text.innerText.includes("Win") ||
-//   //           text.innerText.includes("Enter") ||
-//   //           text.innerText.includes("Backspace")
-//   //         ) {
-//   //           continue;
-//   //         } else {
-//   //           text.innerText = text.innerText.toUpperCase();
-//   //         }
-//   //       }
-//   //     }
-//   //   }
-//   //   const capsLockKey = document.querySelector(".capslock");
-//   //   capsLockKey.classList.toggle("clicked");
-//   //   toggleRegister();
-// }
-
-// function handleShift(event) {
-//   const target = event.currentTarget;
-//   if (lang === "en") {
-//     fillKeyboard(1);
-//     // console.log("shift", target.id);
-//     const shiftKey = document.querySelector(`#${target.id}`);
-//     shiftKey.classList.add("clicked");
-//   } else {
-//     fillKeyboard(3);
-//     // console.log("shift", target);
-//     const shiftKey = document.querySelector(`#${target.id}`);
-//     shiftKey.classList.add("clicked");
-//   }
-// }
-
-// function toggleRegister() {
-//   isUpperRegister = !isUpperRegister;
-// }
-
-// console.log(keyCodes.length, KEYBOARD_MAP.length);
-
 function handleKeyDown(event) {
-  console.log(event);
-  //   codes.push(event.code);
-  //   console.log(codes);
-  //   console.log(event.keyCode);
-  //   const target = event.currentTarget;
-  //   event.preventDefault();
-  //   event.stopPropagation();
   //   console.log(event);
   const buttons = document.querySelectorAll(".button");
   const display = document.querySelector(".display");
   display.focus();
+  //   const rangeEnd = display.selectionEnd;
+  const eventCode = event.code;
+  //   const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
+  let buttonText = null;
   for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].id === event.code) {
+    if (buttons[i].id === eventCode) {
+      buttonText = buttons[i].innerText;
+    }
+  }
+
+  //   console.log(buttonText);
+
+  //   console.log(eventCode, keyboardMapItem);
+
+  for (let i = 0; i < buttons.length; i++) {
+    if (buttons[i].id === eventCode) {
       buttons[i].classList.add("clicked");
       if (buttons[i].id === "CapsLock") {
         capsLockPressed = !capsLockPressed;
@@ -739,36 +608,28 @@ function handleKeyDown(event) {
       }
     }
   }
-  if (event.code.includes("Shift")) {
-    shiftPressed = event.code;
+  if (eventCode.includes("Shift")) {
+    shiftPressed = eventCode;
     fillKeyboard();
   }
   if (event.ctrlKey && event.key === "Alt") {
     setLang();
   }
-  if (event.code.includes("Tab")) {
-    event.preventDefault();
-    display.value += "    ";
-  }
-  //   if ()
-  //   if (event.key === "Shift") {
-  //     if (lang === "en") {
-  //       fillKeyboard(1);
-  //       console.log("shift", event);
-  //       //   const shiftKey = document.querySelector(`.${event.key}`);
-  //       //   shiftKey.classList.add("clicked");
-  //     } else {
-  //       fillKeyboard(3);
-  //       console.log("shift", event);
-  //       //   const shiftKey = document.querySelector(`.${event.key}`);
-  //       //   shiftKey.classList.add("clicked");
-  //     }
-  //   }
-  //   console.log(event.defaultPrevented);
 }
 
 function handleKeyUp(event) {
   const buttons = document.querySelectorAll(".button");
+  const display = document.querySelector(".display");
+  const rangeEnd = display.selectionEnd;
+  const eventCode = event.code;
+  const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
+  let buttonText = null;
+
+  for (let i = 0; i < buttons.length; i++) {
+    if (buttons[i].id === eventCode) {
+      buttonText = buttons[i].innerText;
+    }
+  }
   for (let i = 0; i < buttons.length; i++) {
     if (buttons[i].id !== "CapsLock") {
       buttons[i].classList.remove("clicked");
@@ -783,25 +644,25 @@ function handleKeyUp(event) {
     fillKeyboard();
   }
 
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   if (lang === "en") {
-  //     fillKeyboard(0);
-  //     // console.log("unshift", target);
-  //     // const shiftKey = document.querySelector(`#${target.id}`);
-  //     // shiftKey.classList.add("clicked");
-  //   } else {
-  //     fillKeyboard(2);
-  //     // console.log("unshift", target);
-  //     // const shiftKey = document.querySelector(`#${target.id}`);
-  //     // shiftKey.classList.add("clicked");
-  //   }
+  if (eventCode.includes("Tab")) {
+    event.preventDefault();
+    display.value =
+      display.value.slice(0, display.selectionEnd) +
+      "    " +
+      display.value.slice(display.selectionEnd);
+    display.focus();
+    display.setSelectionRange(rangeEnd + 4, rangeEnd + 4);
+  }
+  if (!keyboardMapItem.isSpecial) {
+    event.preventDefault();
+    display.value =
+      display.value.slice(0, display.selectionEnd) +
+      buttonText +
+      display.value.slice(display.selectionEnd);
+    display.focus();
+    display.setSelectionRange(rangeEnd + 1, rangeEnd + 1);
+  }
 }
-
-// function handleKeyPress(event) {
-//   //   event.preventDefault();
-//   //   event.stopPropagation();
-// }
 
 document.addEventListener("DOMContentLoaded", formDocument);
 document.addEventListener("keydown", handleKeyDown);
