@@ -347,7 +347,6 @@ function fillKeyboard() {
         }
       }
     }
-
     keyboardWrapper.appendChild(button);
   }
   const capsLockKey = document.querySelector("#CapsLock");
@@ -355,7 +354,7 @@ function fillKeyboard() {
     capsLockKey.classList.add("clicked");
   }
   if (shiftPressed) {
-    whichShift = document.querySelector(`#${shiftPressed}`);
+    const whichShift = document.querySelector(`#${shiftPressed}`);
     whichShift.classList.add("clicked");
   }
 }
@@ -372,8 +371,6 @@ function fillDescription() {
 }
 
 function setLang() {
-  console.log("lang change");
-  const langMarker = document.querySelector(".lang-marker");
   const display = document.querySelector(".display");
   display.classList.toggle("en");
   if (lang === "en") {
@@ -409,8 +406,6 @@ function handleButtonMouseDown(event) {
     if (event.currentTarget.id.includes("CapsLock")) {
       capsLockPressed = !capsLockPressed;
       fillKeyboard();
-    }
-    if (event.currentTarget.id.includes("Tab")) {
     }
   }
 }
@@ -496,12 +491,6 @@ function handleKeyDown(event) {
   if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
     event.preventDefault();
   }
-  for (let i = 0; i < buttons.length; i++) {
-    if (buttons[i].id === eventCode) {
-      buttonText = buttons[i].innerText;
-    }
-  }
-
   for (let i = 0; i < buttons.length; i++) {
     if (buttons[i].id === eventCode) {
       buttons[i].classList.add("clicked");
