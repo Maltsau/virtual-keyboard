@@ -1,106 +1,105 @@
-"use strict";
-const KEYBOARD_MAP = [
+var KEYBOARD_MAP = [
     {
         desc: "Backquote",
         eng: "`",
         engShift: "~",
-        by: "ё",
+        by: "ё"
     },
     {
         desc: "Digit1",
         eng: "1",
         engShift: "!",
         by: "1",
-        byShift: "!",
+        byShift: "!"
     },
     {
         desc: "Digit2",
         eng: "2",
         engShift: "@",
         by: "2",
-        byShift: '"',
+        byShift: '"'
     },
     {
         desc: "Digit3",
         eng: "3",
         engShift: "#",
         by: "3",
-        byShift: "№",
+        byShift: "№"
     },
     {
         desc: "Digit4",
         eng: "4",
         engShift: "$",
         by: "4",
-        byShift: ";",
+        byShift: ";"
     },
     {
         desc: "Digit5",
         eng: "5",
         engShift: "%",
         by: "5",
-        byShift: "%",
+        byShift: "%"
     },
     {
         desc: "Digit6",
         eng: "6",
         engShift: "^",
         by: "6",
-        byShift: ":",
+        byShift: ":"
     },
     {
         desc: "Digit7",
         eng: "7",
         engShift: "&",
         by: "7",
-        byShift: "?",
+        byShift: "?"
     },
     {
         desc: "Digit8",
         eng: "8",
         engShift: "*",
         by: "8",
-        byShift: "*",
+        byShift: "*"
     },
     {
         desc: "Digit9",
         eng: "9",
         engShift: "(",
         by: "9",
-        byShift: "(",
+        byShift: "("
     },
     {
         desc: "Digit0",
         eng: "0",
         engShift: ")",
         by: "0",
-        byShift: ")",
+        byShift: ")"
     },
     {
         desc: "Minus",
         eng: "-",
         engShift: "_",
         by: "-",
-        byShift: "_",
+        byShift: "_"
     },
     {
         desc: "Equal",
         eng: "=",
         engShift: "+",
         by: "=",
-        byShift: "+",
+        byShift: "+"
     },
     {
         desc: "Backspace",
         eng: "Backspace",
         by: "Backspace",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "Tab",
         eng: "Tab",
         by: "Tab",
-        isSpecial: true,
+        isSpecial: true
     },
     { desc: "KeyQ", eng: "q", by: "й" },
     { desc: "KeyW", eng: "w", by: "ц" },
@@ -116,33 +115,33 @@ const KEYBOARD_MAP = [
         desc: "BracketLeft",
         eng: "[",
         engShift: "{",
-        by: "х",
+        by: "х"
     },
     {
         desc: "BracketRight",
         eng: "]",
         engShift: "}",
         by: "'",
-        byShift: '"',
+        byShift: '"'
     },
     {
         desc: "Backslash",
         eng: "&#92;",
         engShift: "|",
         by: "&#92;",
-        byShift: "/",
+        byShift: "/"
     },
     {
         desc: "Delete",
         eng: "Del",
         by: "Del",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "CapsLock",
         eng: "CapsLock",
         by: "CapsLock",
-        isSpecial: true,
+        isSpecial: true
     },
     { desc: "KeyA", eng: "a", by: "ф" },
     { desc: "KeyS", eng: "s", by: "ы" },
@@ -157,25 +156,25 @@ const KEYBOARD_MAP = [
         desc: "Semicolon",
         eng: ";",
         engShift: ":",
-        by: "ж",
+        by: "ж"
     },
     {
         desc: "Quote",
         eng: "'",
         engShift: '"',
-        by: "э",
+        by: "э"
     },
     {
         desc: "Enter",
         eng: "Enter",
         by: "Enter",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ShiftLeft",
         eng: "Shift",
         by: "Shift",
-        isSpecial: true,
+        isSpecial: true
     },
     { desc: "KeyZ", eng: "z", by: "я" },
     { desc: "KeyX", eng: "x", by: "ч" },
@@ -188,102 +187,103 @@ const KEYBOARD_MAP = [
         desc: "Comma",
         eng: ",",
         engShift: "<",
-        by: "б",
+        by: "б"
     },
     {
         desc: "Period",
         eng: ".",
         engShift: ">",
-        by: "ю",
+        by: "ю"
     },
     {
         desc: "Slash",
         eng: "/",
         engShift: "?",
         by: ".",
-        byShift: ",",
+        byShift: ","
     },
     {
         desc: "ArrowUp",
         eng: "&uarr;",
         by: "&uarr;",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ShiftRight",
         eng: "Shift",
         by: "Shift",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ControlLeft",
         eng: "Ctrl",
         by: "Ctrl",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "Win",
         eng: "Win",
         by: "Win",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "AltLeft",
         eng: "Alt",
         by: "Alt",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "Space",
         eng: " ",
         by: " ",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "AltRight",
         eng: "Alt",
         by: "Alt",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ArrowLeft",
         eng: "&larr;",
         by: "&larr;",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ArrowDown",
         eng: "&darr;",
         by: "&darr;",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ArrowRight",
         eng: "&rarr;",
         by: "&rarr;",
-        isSpecial: true,
+        isSpecial: true
     },
     {
         desc: "ControlRight",
         eng: "Ctrl",
         by: "Ctrl",
-        isSpecial: true,
+        isSpecial: true
     },
 ];
-let lang = localStorage.lang ? localStorage.lang : "en";
-let shiftPressed = false;
-let capsLockPressed = false;
+var lang = localStorage.lang ? localStorage.lang : "en";
+var shiftPressed = false;
+var capsLockPressed = false;
+console.log("code start", lang);
 function formDocument() {
-    const body = document.createElement("body");
+    var body = document.createElement("body");
     document.documentElement.appendChild(body);
-    const wrapper = document.createElement("main");
+    var wrapper = document.createElement("main");
     wrapper.classList.add("wrapper");
     body.insertAdjacentElement("afterbegin", wrapper);
-    const heading = document.createElement("h1");
+    var heading = document.createElement("h1");
     heading.classList.add("heading");
     heading.innerText = "Virtual Keyboard";
     wrapper.appendChild(heading);
-    const display = document.createElement("textarea");
+    var display = document.createElement("textarea");
     display.rows = 10;
     display.cols = 50;
     display.classList.add("display");
@@ -291,24 +291,24 @@ function formDocument() {
     if (lang === "en") {
         display.classList.add("en");
     }
-    const keyboardWrapper = document.createElement("div");
+    var keyboardWrapper = document.createElement("div");
     keyboardWrapper.classList.add("keyboard-wrapper");
     wrapper.appendChild(keyboardWrapper);
     fillKeyboard();
-    const descriptionSection = document.createElement("div");
+    var descriptionSection = document.createElement("div");
     descriptionSection.classList.add("discription-section");
-    const descriptionParagraph = document.createElement("p");
+    var descriptionParagraph = document.createElement("p");
     descriptionParagraph.classList.add("discription-paragraph");
     descriptionSection.appendChild(descriptionParagraph);
     wrapper.appendChild(descriptionSection);
     fillDescription();
 }
 function fillKeyboard() {
-    const keyboardWrapper = document.querySelector(".keyboard-wrapper");
+    var keyboardWrapper = document.querySelector(".keyboard-wrapper");
     if (keyboardWrapper)
         keyboardWrapper.innerHTML = "";
-    for (let i = 0; i < KEYBOARD_MAP.length; i += 1) {
-        const button = document.createElement("div");
+    for (var i = 0; i < KEYBOARD_MAP.length; i += 1) {
+        var button = document.createElement("div");
         button.classList.add("button");
         if (KEYBOARD_MAP[i].isSpecial) {
             button.classList.add("special");
@@ -319,77 +319,74 @@ function fillKeyboard() {
         if (lang === "en") {
             if (capsLockPressed) {
                 button.classList.contains("special")
-                    ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`)
-                    : (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng.toUpperCase()}</span>`);
+                    ? (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].eng, "</span>"))
+                    : (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].eng.toUpperCase(), "</span>"));
             }
             else {
-                button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`;
+                button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].eng, "</span>");
             }
             if (shiftPressed) {
                 if (KEYBOARD_MAP[i].engShift) {
-                    button.innerHTML = `<span>${KEYBOARD_MAP[i].engShift}</span>`;
+                    button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].engShift, "</span>");
                 }
                 else {
                     button.classList.contains("special")
-                        ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng}</span>`)
-                        : (button.innerHTML = `<span>${KEYBOARD_MAP[i].eng.toUpperCase()}</span>`);
+                        ? (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].eng, "</span>"))
+                        : (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].eng.toUpperCase(), "</span>"));
                 }
             }
         }
         else {
             if (capsLockPressed) {
                 button.classList.contains("special")
-                    ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`)
-                    : (button.innerHTML = `<span>${KEYBOARD_MAP[i].by.toUpperCase()}</span>`);
+                    ? (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].by, "</span>"))
+                    : (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].by.toUpperCase(), "</span>"));
             }
             else {
-                button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`;
+                button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].by, "</span>");
             }
             if (shiftPressed) {
                 if (KEYBOARD_MAP[i].byShift) {
-                    button.innerHTML = `<span>${KEYBOARD_MAP[i].byShift}</span>`;
+                    button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].byShift, "</span>");
                 }
                 else {
                     button.classList.contains("special")
-                        ? (button.innerHTML = `<span>${KEYBOARD_MAP[i].by}</span>`)
-                        : (button.innerHTML = `<span>${KEYBOARD_MAP[i].by.toUpperCase()}</span>`);
+                        ? (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].by, "</span>"))
+                        : (button.innerHTML = "<span>".concat(KEYBOARD_MAP[i].by.toUpperCase(), "</span>"));
                 }
             }
         }
         if (keyboardWrapper)
             keyboardWrapper.appendChild(button);
     }
-    const capsLockKey = document.querySelector("#CapsLock");
+    var capsLockKey = document.querySelector("#CapsLock");
     if (capsLockPressed && capsLockKey) {
         capsLockKey.classList.add("clicked");
     }
     if (shiftPressed) {
-        const whichShift = document.querySelector(`#${shiftPressed}`);
+        var whichShift = document.querySelector("#".concat(shiftPressed));
         if (whichShift)
             whichShift.classList.add("clicked");
     }
 }
 function fillDescription() {
-    const descriptionParagraph = document.querySelector(".discription-paragraph");
+    var descriptionParagraph = document.querySelector(".discription-paragraph");
     if (descriptionParagraph) {
         if (lang === "en") {
-            descriptionParagraph.innerText = `The keyboard was created in the Linux OS
-    To switch language, press: Alt + Ctrl`;
+            descriptionParagraph.innerText = "The keyboard was created in the Linux OS\n    To switch language, press: Alt + Ctrl";
         }
         else {
-            descriptionParagraph.innerText = `Клавіятура створана ў АC Linux
-    Каб пераключыць мову, націсніце: Alt + Ctrl`;
+            descriptionParagraph.innerText = "\u041A\u043B\u0430\u0432\u0456\u044F\u0442\u0443\u0440\u0430 \u0441\u0442\u0432\u043E\u0440\u0430\u043D\u0430 \u045E \u0410C Linux\n    \u041A\u0430\u0431 \u043F\u0435\u0440\u0430\u043A\u043B\u044E\u0447\u044B\u0446\u044C \u043C\u043E\u0432\u0443, \u043D\u0430\u0446\u0456\u0441\u043D\u0456\u0446\u0435: Alt + Ctrl";
         }
     }
 }
 function setLang() {
-    const display = document.querySelector(".display");
+    console.log("setting lang start", lang);
+    var display = document.querySelector(".display");
     if (display)
         display.classList.toggle("en");
-    const capsLockKey = document.querySelector("#CapsLock");
+    var capsLockKey = document.querySelector("#CapsLock");
     capsLockPressed = false;
-    fillKeyboard();
-    fillDescription();
     if (capsLockKey)
         capsLockKey.classList.remove("clicked");
     if (lang === "en") {
@@ -398,10 +395,13 @@ function setLang() {
     else {
         lang = "en";
     }
+    console.log("setting lang", lang);
     localStorage.setItem("lang", lang);
+    fillKeyboard();
+    fillDescription();
 }
 function handleButtonMouseDown(event) {
-    const clickTarget = event.currentTarget;
+    var clickTarget = event.currentTarget;
     if (clickTarget &&
         clickTarget instanceof HTMLElement &&
         clickTarget.classList.contains("button")) {
@@ -409,7 +409,7 @@ function handleButtonMouseDown(event) {
         if (clickTarget.id.includes("Shift")) {
             shiftPressed = clickTarget.id;
             fillKeyboard();
-            const shiftKey = document.querySelector(`#${shiftPressed}`);
+            var shiftKey = document.querySelector("#".concat(shiftPressed));
             if (shiftKey)
                 shiftKey.classList.add("clicked");
         }
@@ -420,9 +420,9 @@ function handleButtonMouseDown(event) {
     }
 }
 function handleButtonMouseUp(event) {
-    const target = event.currentTarget;
-    const display = document.querySelector(".display");
-    let rangeEnd = 0;
+    var target = event.currentTarget;
+    var display = document.querySelector(".display");
+    var rangeEnd = 0;
     if (display && target instanceof HTMLElement) {
         rangeEnd = display.selectionEnd;
         if (target && !target.classList.contains("special")) {
@@ -493,14 +493,14 @@ function handleButtonMouseUp(event) {
     }
 }
 function handleKeyDown(event) {
-    const buttons = document.querySelectorAll(".button");
-    const eventCode = event.code;
-    const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
+    var buttons = document.querySelectorAll(".button");
+    var eventCode = event.code;
+    var keyboardMapItem = KEYBOARD_MAP.find(function (item) { return item.desc === eventCode; });
     if (keyboardMapItem) {
         if (!keyboardMapItem.isSpecial || keyboardMapItem.desc === "Tab") {
             event.preventDefault();
         }
-        for (let i = 0; i < buttons.length; i++) {
+        for (var i = 0; i < buttons.length; i++) {
             if (buttons[i].id === eventCode) {
                 buttons[i].classList.add("clicked");
                 if (buttons[i].id === "CapsLock") {
@@ -515,26 +515,27 @@ function handleKeyDown(event) {
         }
         if ((event.ctrlKey && event.key === "Alt") ||
             (event.altKey && event.key === "Control")) {
+            console.log("setLang from handler");
             setLang();
         }
     }
 }
 function handleKeyUp(event) {
-    const buttons = document.querySelectorAll(".button");
-    const display = document.querySelector(".display");
-    let rangeEnd = 0;
+    var buttons = document.querySelectorAll(".button");
+    var display = document.querySelector(".display");
+    var rangeEnd = 0;
     if (display) {
         rangeEnd = display.selectionEnd;
-        const eventCode = event.code;
-        const keyboardMapItem = KEYBOARD_MAP.find((item) => item.desc === eventCode);
-        let buttonText = "";
+        var eventCode_1 = event.code;
+        var keyboardMapItem = KEYBOARD_MAP.find(function (item) { return item.desc === eventCode_1; });
+        var buttonText = "";
         if (keyboardMapItem) {
-            for (let i = 0; i < buttons.length; i++) {
-                if (buttons[i].id === eventCode) {
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].id === eventCode_1) {
                     buttonText = buttons[i].innerText;
                 }
             }
-            for (let i = 0; i < buttons.length; i++) {
+            for (var i = 0; i < buttons.length; i++) {
                 if (buttons[i].id !== "CapsLock") {
                     if (buttons[i].id === event.code) {
                         buttons[i].classList.remove("clicked");
@@ -542,15 +543,10 @@ function handleKeyUp(event) {
                 }
             }
             if (event.code.includes("Shift")) {
-                if (shiftPressed) {
-                    shiftPressed = false;
-                }
-                else {
-                    shiftPressed = event.code;
-                }
+                shiftPressed = false;
                 fillKeyboard();
             }
-            if (eventCode.includes("Tab")) {
+            if (eventCode_1.includes("Tab")) {
                 event.preventDefault();
                 display.value =
                     display.value.slice(0, display.selectionEnd) +
