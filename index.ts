@@ -282,6 +282,7 @@ const KEYBOARD_MAP: KeyboardType[] = [
 let lang: string = localStorage.lang ? localStorage.lang : "en";
 let shiftPressed: boolean | string = false;
 let capsLockPressed: boolean = false;
+console.log("code start", lang);
 
 function formDocument(): void {
   const body = document.createElement("body");
@@ -404,21 +405,23 @@ function fillDescription(): void {
 }
 
 function setLang(): void {
+  console.log("setting lang start", lang);
   const display: HTMLTextAreaElement | null =
     document.querySelector(".display");
   if (display) display.classList.toggle("en");
   const capsLockKey: HTMLDivElement | null =
     document.querySelector("#CapsLock");
   capsLockPressed = false;
-  fillKeyboard();
-  fillDescription();
   if (capsLockKey) capsLockKey.classList.remove("clicked");
   if (lang === "en") {
     lang = "by";
   } else {
     lang = "en";
   }
+  console.log("setting lang", lang);
   localStorage.setItem("lang", lang);
+  fillKeyboard();
+  fillDescription();
 }
 
 function handleButtonMouseDown(event: MouseEvent): void {
@@ -543,6 +546,7 @@ function handleKeyDown(event: KeyboardEvent): void {
       (event.ctrlKey && event.key === "Alt") ||
       (event.altKey && event.key === "Control")
     ) {
+      console.log("setLang from handler");
       setLang();
     }
   }
@@ -575,11 +579,7 @@ function handleKeyUp(event: KeyboardEvent): void {
         }
       }
       if (event.code.includes("Shift")) {
-        if (shiftPressed) {
-          shiftPressed = false;
-        } else {
-          shiftPressed = event.code;
-        }
+        shiftPressed = false;
         fillKeyboard();
       }
 
