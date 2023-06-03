@@ -272,7 +272,6 @@ var KEYBOARD_MAP = [
 var lang = localStorage.lang ? localStorage.lang : "en";
 var shiftPressed = false;
 var capsLockPressed = false;
-console.log("code start", lang);
 function formDocument() {
     var body = document.createElement("body");
     document.documentElement.appendChild(body);
@@ -381,7 +380,6 @@ function fillDescription() {
     }
 }
 function setLang() {
-    console.log("setting lang start", lang);
     var display = document.querySelector(".display");
     if (display)
         display.classList.toggle("en");
@@ -395,7 +393,6 @@ function setLang() {
     else {
         lang = "en";
     }
-    console.log("setting lang", lang);
     localStorage.setItem("lang", lang);
     fillKeyboard();
     fillDescription();
@@ -515,7 +512,6 @@ function handleKeyDown(event) {
         }
         if ((event.ctrlKey && event.key === "Alt") ||
             (event.altKey && event.key === "Control")) {
-            console.log("setLang from handler");
             setLang();
         }
     }

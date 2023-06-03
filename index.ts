@@ -282,7 +282,6 @@ const KEYBOARD_MAP: KeyboardType[] = [
 let lang: string = localStorage.lang ? localStorage.lang : "en";
 let shiftPressed: boolean | string = false;
 let capsLockPressed: boolean = false;
-console.log("code start", lang);
 
 function formDocument(): void {
   const body = document.createElement("body");
@@ -405,7 +404,6 @@ function fillDescription(): void {
 }
 
 function setLang(): void {
-  console.log("setting lang start", lang);
   const display: HTMLTextAreaElement | null =
     document.querySelector(".display");
   if (display) display.classList.toggle("en");
@@ -418,7 +416,6 @@ function setLang(): void {
   } else {
     lang = "en";
   }
-  console.log("setting lang", lang);
   localStorage.setItem("lang", lang);
   fillKeyboard();
   fillDescription();
@@ -546,7 +543,6 @@ function handleKeyDown(event: KeyboardEvent): void {
       (event.ctrlKey && event.key === "Alt") ||
       (event.altKey && event.key === "Control")
     ) {
-      console.log("setLang from handler");
       setLang();
     }
   }
