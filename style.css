@@ -38,22 +38,6 @@ p {
   background-color: rgb(229, 229, 248);
 }
 
-/* .lang-marker {
-  position: relative;
-  top: 2px;
-  left: calc(50% - 30px);
-  height: 3em;
-  width: 3em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: red;
-  font-weight: 800;
-  border-radius: 50%;
-  cursor: pointer;
-} */
-
 .keyboard-wrapper {
   padding: 5px;
   background-color: darkgrey;
